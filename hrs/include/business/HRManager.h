@@ -81,7 +81,13 @@ class HRManager
    * @param none
    * @return not applicable
    */
-  ~HRManager();
+  ~HRManager()
+  {
+    m_empBC = Null;
+    m_skillBC = Null;
+    m_skillCatBC= Null;
+    m_projectBC= Null;
+  }
 
 
    /**@fn getInstance
