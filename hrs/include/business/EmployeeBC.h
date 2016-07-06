@@ -1,10 +1,14 @@
 #ifndef EmployeeBC_H
 #define EmployeeBC_H
 
+#ifndef Null
+#define Null 0
+
 #include <common/EmployeeInfo.h>
+#include<common/AccentureDetails.h>
 #include <dao/EmployeeDAO.h>
 #include <dao/EmpAccentureDetailsDAO.h>
- 
+
 #include <string>
 #include <vector>
 
@@ -13,29 +17,29 @@
  * @brief HRS Application : Declares the EmployeeBC Class.
  *
  * <BR>NAME:EmployeeBC
- * 
+ *
  * <BR>BASE CLASSES:None
- * 
+ *
  * <BR>PURPOSE:It is the interface bitween HRManager class and EmployeeDAO class
  *
  * <BR>AUTHOR:Vinoj.V.S
  * <BR>
  * <BR>$Revision: $5/12/2005
- * 
+ *
  * <BR>$Log:5/12/2005
- * 
+ *
  * <BR>COPYRIGHT NOTICE:
  * <BR>Copyright (c) 2005 C++ Capability team at Accenture. All rights reserved.
  */
 
 
 namespace bc {
-	
+
 /**@class EmployeeBC
  * @brief HRS Application  Declaration of EmployeeBC Class.
  * <PRE>The participants will be give following Activity.
  * 1. Write a class EmployeeBC, which will enforce encapsulation.
- * 2. class EmployeeBC should have three private member variable. 
+ * 2. class EmployeeBC should have two private member variable.
  * 3. Declare one constructors.
  * 4. Declare Destructor.
  * 5. Declare a function to print the content of the Complex class.
@@ -43,12 +47,12 @@ namespace bc {
 
 class EmployeeBC
 {
- private: 
+ private:
 	 dao::EmployeeDAO m_empDao; ///<Reference to the employee Data Access object
 	 dao::EmpAccentureDetailsDAO m_empAccDao; ///<Reference to the employee accenture deatils DAO
 
       //	 EmployeeDao m_dbAccess; ///<Reference to the  employee DAO
-	 
+
     public:
 
     /**@fn EmployeeBC
@@ -58,15 +62,24 @@ class EmployeeBC
      * @param none
      * @return none
      */
-  EmployeeBC(){};// Check why it was not defined!!!!
+  EmployeeBC()
+  {
+    m_empDao = Null;
+    m_empAccDao = Null;
+  }
+  // Check why it was not defined!!!!
 
-  
+
     /**@fn EmployeeBC
      * @brief Destructor.
      * @param none
      * @return none
-     */ 
-  ~EmployeeBC(){}//
+     */
+  ~EmployeeBC()
+  {
+    m_empDao = Null;
+    m_empAccDao = Null;
+  }//
 
 
      /**@fn createEmployee
@@ -76,17 +89,29 @@ class EmployeeBC
      * @param reference to the Object of employeeInfo
      * @return void.
      */
-    void createEmployee(EmployeeInfo& info);
-  
- 
+    void createEmployee(EmployeeInfo& info)
+    {
+      int id = idgen::EmpIdGen.getNextId();
+      info.setEmpNo = id;
+      m_empDao.create(info);
+      AccentureDetails AccDetails;
+      AccDetails.setEnterpriseId(id);
+      m_empAccDao.create(info);
+    }
+
+
     /**@fn searchEmployee
      *@brief This function searchs for employee
      * returns the Information of the employee.
      * @param std::string
      * @return an object of the class employeeinfo.
      */
-    EmployeeInfo searchEmployee(std::string empno);
-  
+    EmployeeInfo searchEmployee(std::string empno)
+    {
+      EmployeeInfo *empin = new EmployeeInfo;
+
+    }
+
    /**@fn searchEmployees
      *@brief This function searchs for employees
      * returns the collection of Information of the employee.
@@ -95,8 +120,8 @@ class EmployeeBC
      */
     std::vector<EmployeeInfo> searchEmployees(std::string info);
 
-  
-  
+
+
     /**@fn update
      *@brief This function updates for employees
      * this function updates the information of the employees.
@@ -109,4 +134,3 @@ class EmployeeBC
 
 }	//namespace bc
 #endif //EmployeeBC.h
-
