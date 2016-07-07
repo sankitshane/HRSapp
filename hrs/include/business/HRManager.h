@@ -68,26 +68,14 @@ class HRManager
    * @param none
    * @return none
    */
-   HRManager()
-   {
-     m_empBC = Null;
-     m_skillBC = Null;
-     m_skillCatBC= Null;
-     m_projectBC= Null;
-   }
+   HRManager();
  public:
    /**@fn HRManager
    * @brief Destructor.
    * @param none
    * @return not applicable
    */
-  ~HRManager()
-  {
-    m_empBC = Null;
-    m_skillBC = Null;
-    m_skillCatBC= Null;
-    m_projectBC= Null;
-  }
+  ~HRManager();
 
 
    /**@fn getInstance
@@ -95,25 +83,14 @@ class HRManager
     * @param none
     * @return an object to HRManager.
     */
-  static HRManager* getInstance(void)
-    {
-      if (m_instance == Null)
-      {
-        HRManager * new_instance = new HRManager;
-        return new_instance;
-      }
-      return m_instance;
-    }
+  static HRManager* getInstance(void);
 
    /**@fn createEmployee
     *@brief  This method uses createEmployee method of EmployeeBC.
    * @param Object of the class EmployeeInfo
    * @return nothing.
    */
-  void createEmployee(EmployeeInfo& info)
-    {
-      m_empBC.createEmployee(info);
-    }
+  void createEmployee(EmployeeInfo& info);
 
 
 
@@ -122,10 +99,7 @@ class HRManager
    * @param std::string
    * @return an object of the class employeeInfo.
    */
-   EmployeeInfo searchEmployee(std::string empno)
-   {
-     m_empBC.searchEmployee(empno);
-   }
+   EmployeeInfo searchEmployee(std::string empno);
 
 
 
@@ -134,10 +108,7 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return the collection of employeeInfo .
    */
-    std::vector<EmployeeInfo> searchEmployees(std::string info)
-    {
-      m_empBC.searchEmployees(info);
-    }
+    std::vector<EmployeeInfo> searchEmployees(std::string info);
 
 
   /**@fn updateEmployee
@@ -146,10 +117,7 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return none
    */
-  void updateEmployee(EmployeeInfo& info)
-  {
-    m_empBC.updateEmployee(info);
-  }
+  void updateEmployee(EmployeeInfo& info);
 
 
   /**@fn createCategory
@@ -157,10 +125,7 @@ class HRManager
    * @param Object of the class SkillCategory
    * @return nothing.
    */
-  void createCategory(SkillCategory& info)
-  {
-    m_skillCatBC.createCategory(info);
-  }
+  void createCategory(SkillCategory& info);
 
 
    /**@fn searchCategory
@@ -168,10 +133,7 @@ class HRManager
    * @param std::string
    * @return an object of the class SkillCategory.
    */
-   SkillCategory searchCategory(std::string id)
-   {
-     m_skillCatBC.searchCategory(id);
-   }
+   SkillCategory searchCategory(std::string id);
 
 
    /**@fn searchCategories
@@ -179,10 +141,7 @@ class HRManager
    * @param Object of the class SkillCategory
    * @return an collection of SkillCategory.
    */
-   std::vector<SkillCategory>  searchCategories(std::string dataFind)
-   {
-     m_skillCatBC.searchCategories(dataFind);
-   }
+   std::vector<SkillCategory>  searchCategories(std::string dataFind);
 
 
    /**@fn updateCategory
@@ -191,40 +150,28 @@ class HRManager
    * @param bject of the class SkillCategory
    * @return nothing.
    */
-  void updateCategory(SkillCategory& info)
-  {
-    m_skillCatBC.updateCategory(info);
-  }
+  void updateCategory(SkillCategory& info);
 
 
    /**This method uses createSkill method of EmployeeBC
    * @param Object of the class SkillInfornmation
    * @return nothing.
    */
-  void createSkill(SkillsInformation& info)
-  {
-    m_skillBC.createSkill(info);
-  }
+  void createSkill(SkillsInformation& info);
 
 
   /**This method uses searchSkill method of SkillBC.
    * @param std::string
    * @return an object of the class SkillInformation.
    */
-   SkillsInformation searchSkill(std::string id)
-   {
-     m_skillBC.searchSkill(id);
-   }
+   SkillsInformation searchSkill(std::string id);
 
 
  /**This method uses searchSkills method of SkillCategoryBC.
    * @param Object of the class SkillInformation
    * @return an object of SkillInformation.
    */
-   std::vector<SkillsInformation>  searchSkills(std::string name)
-   {
-     m_skillBC.searchSkills(name);
-   }
+   std::vector<SkillsInformation>  searchSkills(std::string name);
 
 
    /**this function uses the updateSkill method of SkillBC.
@@ -232,40 +179,28 @@ class HRManager
    * @param Object of the class SkillInformation
    * @return none
    */
-  void updateSkill(SkillsInformation& info)
-  {
-    m_skillBC.updateSkill(info);
-  }
+  void updateSkill(SkillsInformation& info);
 
 
    /**This method uses createProject method of ProjectBC
    * @param Object of the class ProjectInfo
    * @return nothing.
    */
-  void createProject(ProjectInfo& info)
-  {
-    m_projectBC.createProject(info);
-  }
+  void createProject(ProjectInfo& info);
 
 
   /**This method uses searchProject method of ProjectBC.
    * @param std::string
    * @return an object of the class ProjectInfo.
    */
-   ProjectInfo searchProject(std::string id)
-   {
-     m_projectBC.searchProject(id);
-   }
+   ProjectInfo searchProject(std::string id);
 
 
    /**This method uses searchApprovedPoject method of ProjectBC.
    * @param Object of the class Project Info
    * @return a collection of ProjectInformation.
    */
-   std::vector<ProjectInfo>  searchProjects(std::string dataFind)
-   {
-     m_projectBC.searchProjects(dataFind);
-   }
+   std::vector<ProjectInfo>  searchProjects(std::string dataFind);
 
 
 
@@ -274,10 +209,7 @@ class HRManager
    * @param Object of the class ProjectInfo
    * @return none
    */
-  void updateProject(ProjectInfo& info)
-  {
-    m_projectBC.updateProject(info);
-  }
+  void updateProject(ProjectInfo& info);
 };
 
 } //namespace bc
