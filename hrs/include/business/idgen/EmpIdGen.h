@@ -53,7 +53,7 @@ class EmpIdGen
   * @param none
   * @return none
   */
-  EmpIdGen(){};
+  EmpIdGen();
 
 
   public:
@@ -63,14 +63,7 @@ class EmpIdGen
   * @param none
   * @return Pointer to EmpIdGen.
   */
-  static EmpIdGen* getInstance()
-	{
-		if (m_thisInstance == Null)
-		{
-			m_thisInstance = new EmplIdGen;
-			return m_thisInstance;
-		}
-	}
+  static EmpIdGen* getInstance();
 
 
  /**@fn getNextId
@@ -78,18 +71,7 @@ class EmpIdGen
   * @param none.
   * @return string.
   */
-  std::string getNextId()
-	{
-		try
-		{
-			throw();
-		}
-		catch(dbaccess::DBException)
-		{
-			DBException = GeneralException;
-
-		}
-	}
+  std::string getNextId();
 };
 
 }	//namespace idgen
