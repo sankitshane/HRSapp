@@ -26,14 +26,7 @@ namespace bc {
 * 4. Declare Destructor.
 */
 
-class HRManager
-{
- private:
-	 static HRManager* m_instance; ///<Reference to the HRManager class
-   EmployeeBC m_empBC; ///<Object of the EmployeeBC Class.
-	 SkillCategoryBC m_skillCatBC; ///<Object of the skill categoryBC class
-	 SkillBC m_skillBC; ///<Object of  the skillBC class
-	 ProjectBC m_projectBC; ///<Object of the projectBC class
+
 
    /**@fn HRManager
    * @brief Default Constructor.
@@ -42,7 +35,7 @@ class HRManager
    * @param none
    * @return none
    */
-   HRManager()
+   HRManager::HRManager()
    {
      m_empBC = Null;
      m_skillBC = Null;
@@ -55,7 +48,7 @@ class HRManager
    * @param none
    * @return not applicable
    */
-  ~HRManager()
+  HRManager::~HRManager()
   {
     m_empBC = Null;
     m_skillBC = Null;
@@ -69,7 +62,7 @@ class HRManager
     * @param none
     * @return an object to HRManager.
     */
-  static HRManager* getInstance(void)
+  static HRManager* HRManager::getInstance(void)
     {
       if (m_instance == Null)
       {
@@ -84,7 +77,7 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return nothing.
    */
-  void createEmployee(EmployeeInfo& info)
+  void HRManager::createEmployee(EmployeeInfo& info)
     {
       m_empBC.createEmployee(info);
     }
@@ -96,9 +89,9 @@ class HRManager
    * @param std::string
    * @return an object of the class employeeInfo.
    */
-   EmployeeInfo searchEmployee(std::string empno)
+   EmployeeInfo HRManager::searchEmployee(std::string empno)
    {
-     m_empBC.searchEmployee(empno);
+     return m_empBC.searchEmployee(empno);
    }
 
 
@@ -108,9 +101,9 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return the collection of employeeInfo .
    */
-    std::vector<EmployeeInfo> searchEmployees(std::string info)
+    std::vector<EmployeeInfo> HRManager::searchEmployees(std::string info)
     {
-      m_empBC.searchEmployees(info);
+      return m_empBC.searchEmployees(info);
     }
 
 
@@ -120,7 +113,7 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return none
    */
-  void updateEmployee(EmployeeInfo& info)
+  void HRManager::updateEmployee(EmployeeInfo& info)
   {
     m_empBC.updateEmployee(info);
   }
@@ -131,7 +124,7 @@ class HRManager
    * @param Object of the class SkillCategory
    * @return nothing.
    */
-  void createCategory(SkillCategory& info)
+  void HRManager::createCategory(SkillCategory& info)
   {
     m_skillCatBC.createCategory(info);
   }
@@ -142,9 +135,9 @@ class HRManager
    * @param std::string
    * @return an object of the class SkillCategory.
    */
-   SkillCategory searchCategory(std::string id)
+   SkillCategory HRManager::searchCategory(std::string id)
    {
-     m_skillCatBC.searchCategory(id);
+     return m_skillCatBC.searchCategory(id);
    }
 
 
@@ -153,9 +146,9 @@ class HRManager
    * @param Object of the class SkillCategory
    * @return an collection of SkillCategory.
    */
-   std::vector<SkillCategory>  searchCategories(std::string dataFind)
+   std::vector<SkillCategory>  HRManager::searchCategories(std::string dataFind)
    {
-     m_skillCatBC.searchCategories(dataFind);
+     return m_skillCatBC.searchCategories(dataFind);
    }
 
 
@@ -165,7 +158,7 @@ class HRManager
    * @param bject of the class SkillCategory
    * @return nothing.
    */
-  void updateCategory(SkillCategory& info)
+  void HRManager::updateCategory(SkillCategory& info)
   {
     m_skillCatBC.updateCategory(info);
   }
@@ -175,7 +168,7 @@ class HRManager
    * @param Object of the class SkillInfornmation
    * @return nothing.
    */
-  void createSkill(SkillsInformation& info)
+  void HRManager::createSkill(SkillsInformation& info)
   {
     m_skillBC.createSkill(info);
   }
@@ -185,9 +178,9 @@ class HRManager
    * @param std::string
    * @return an object of the class SkillInformation.
    */
-   SkillsInformation searchSkill(std::string id)
+   SkillsInformation HRManager::searchSkill(std::string id)
    {
-     m_skillBC.searchSkill(id);
+     return m_skillBC.searchSkill(id);
    }
 
 
@@ -195,9 +188,9 @@ class HRManager
    * @param Object of the class SkillInformation
    * @return an object of SkillInformation.
    */
-   std::vector<SkillsInformation>  searchSkills(std::string name)
+   std::vector<SkillsInformation>  HRManager::searchSkills(std::string name)
    {
-     m_skillBC.searchSkills(name);
+     return m_skillBC.searchSkills(name);
    }
 
 
@@ -206,7 +199,7 @@ class HRManager
    * @param Object of the class SkillInformation
    * @return none
    */
-  void updateSkill(SkillsInformation& info)
+  void HRManager::updateSkill(SkillsInformation& info)
   {
     m_skillBC.updateSkill(info);
   }
@@ -216,7 +209,7 @@ class HRManager
    * @param Object of the class ProjectInfo
    * @return nothing.
    */
-  void createProject(ProjectInfo& info)
+  void HRManager::createProject(ProjectInfo& info)
   {
     m_projectBC.createProject(info);
   }
@@ -226,9 +219,9 @@ class HRManager
    * @param std::string
    * @return an object of the class ProjectInfo.
    */
-   ProjectInfo searchProject(std::string id)
+   ProjectInfo HRManager::searchProject(std::string id)
    {
-     m_projectBC.searchProject(id);
+    return  m_projectBC.searchProject(id);
    }
 
 
@@ -236,9 +229,9 @@ class HRManager
    * @param Object of the class Project Info
    * @return a collection of ProjectInformation.
    */
-   std::vector<ProjectInfo>  searchProjects(std::string dataFind)
+   std::vector<ProjectInfo>  HRManager::searchProjects(std::string dataFind)
    {
-     m_projectBC.searchProjects(dataFind);
+     return m_projectBC.searchProjects(dataFind);
    }
 
 
@@ -248,11 +241,11 @@ class HRManager
    * @param Object of the class ProjectInfo
    * @return none
    */
-  void updateProject(ProjectInfo& info)
+  void HRManager::updateProject(ProjectInfo& info)
   {
     m_projectBC.updateProject(info);
   }
-};
+
 
 } //namespace bc
 #endif
