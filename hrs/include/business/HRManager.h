@@ -99,8 +99,7 @@ class HRManager
     {
       if (m_instance == Null)
       {
-        HRManager * new_instance = new HRManager;
-        return new_instance;
+       new_instance = new HRManager;
       }
       return m_instance;
     }
@@ -124,7 +123,7 @@ class HRManager
    */
    EmployeeInfo searchEmployee(std::string empno)
    {
-     m_empBC.searchEmployee(empno);
+     return m_empBC.searchEmployee(empno);
    }
 
 
@@ -136,7 +135,7 @@ class HRManager
    */
     std::vector<EmployeeInfo> searchEmployees(std::string info)
     {
-      m_empBC.searchEmployees(info);
+      return m_empBC.searchEmployees(info);
     }
 
 
@@ -148,7 +147,7 @@ class HRManager
    */
   void updateEmployee(EmployeeInfo& info)
   {
-    m_empBC.updateEmployee(info);
+  m_empBC.updateEmployee(info);
   }
 
 
@@ -170,7 +169,7 @@ class HRManager
    */
    SkillCategory searchCategory(std::string id)
    {
-     m_skillCatBC.searchCategory(id);
+     return m_skillCatBC.searchCategory(id);
    }
 
 
@@ -181,7 +180,7 @@ class HRManager
    */
    std::vector<SkillCategory>  searchCategories(std::string dataFind)
    {
-     m_skillCatBC.searchCategories(dataFind);
+     return m_skillCatBC.searchCategories(dataFind);
    }
 
 
@@ -213,7 +212,7 @@ class HRManager
    */
    SkillsInformation searchSkill(std::string id)
    {
-     m_skillBC.searchSkill(id);
+     return m_skillBC.searchSkill(id);
    }
 
 
@@ -223,7 +222,7 @@ class HRManager
    */
    std::vector<SkillsInformation>  searchSkills(std::string name)
    {
-     m_skillBC.searchSkills(name);
+     return m_skillBC.searchSkills(name);
    }
 
 
@@ -254,7 +253,7 @@ class HRManager
    */
    ProjectInfo searchProject(std::string id)
    {
-     m_projectBC.searchProject(id);
+     return m_projectBC.searchProject(id);
    }
 
 
@@ -264,7 +263,7 @@ class HRManager
    */
    std::vector<ProjectInfo>  searchProjects(std::string dataFind)
    {
-     m_projectBC.searchProjects(dataFind);
+     return m_projectBC.searchProjects(dataFind);
    }
 
 
