@@ -43,24 +43,9 @@ namespace bc {
  * 5. Declare a function to print the content of the Complex class.
  */
 
-class EmployeeBC
-{
- private:
-	 dao::EmployeeDAO m_empDao; ///<Reference to the employee Data Access object
-	 dao::EmpAccentureDetailsDAO m_empAccDao; ///<Reference to the employee accenture deatils DAO
 
-      //	 EmployeeDao m_dbAccess; ///<Reference to the  employee DAO
 
-    public:
-
-    /**@fn EmployeeBC
-     * @brief Default Constructor.
-     * This constructor will not take any argument.
-     * It will initialize both the variable to ZERO.
-     * @param none
-     * @return none
-     */
-  EmployeeBC()
+  EmployeeBC::EmployeeBC()
   {
     m_empDao = Null;
     m_empAccDao = Null;
@@ -73,7 +58,7 @@ class EmployeeBC
      * @param none
      * @return none
      */
-  ~EmployeeBC()
+  EmpolyeeBC::~EmployeeBC()
   {
     m_empDao = Null;
     m_empAccDao = Null;
@@ -87,7 +72,7 @@ class EmployeeBC
      * @param reference to the Object of employeeInfo
      * @return void.
      */
-    void createEmployee(EmployeeInfo& info)
+    void EmployeeBC::createEmployee(EmployeeInfo& info)
     {
         #ifdef ALOGGER
             logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "About to get unique id");
@@ -119,7 +104,7 @@ class EmployeeBC
      * @param std::string
      * @return an object of the class employeeinfo.
      */
-    EmployeeInfo searchEmployee(std::string empno)
+    EmployeeInfo EmployeeBC::searchEmployee(std::string empno)
     {
       EmployeeInfo eInfo;
       EmployeeInfo* pInfoPtr = NULL;
@@ -157,7 +142,7 @@ class EmployeeBC
      * @param std::string
      * @return the collection of objects of the class EmployeeInfo.
      */
-    std::vector<EmployeeInfo> searchEmployees(std::string info)
+    std::vector<EmployeeInfo> EmployeeBC::searchEmployees(std::string info)
     {
       #ifdef ALOGGER
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, name.c_str() );
@@ -202,7 +187,7 @@ class EmployeeBC
      * @param reference to the object of theclass EmployeeInfo
      * @return none
      */
-    void update(EmployeeInfo& piSet)
+    void EmployeeBC::update(EmployeeInfo& piSet)
     {
       #ifdef ALOGGER
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
