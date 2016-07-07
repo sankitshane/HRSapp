@@ -63,7 +63,49 @@ class ProjectIdGen
   * @param none.
   * @return string.
   */
-  std::string getNextId();
+  std::string getNextId()
+  {
+	   try{
+      dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
+      if(conn->getError().isError()) //Checks for error.
+	{
+	  throw new GeneralException(conn->getError().getErrorMessage());
+	}
+      dbaccess::ODBCStatement* stmt = conn->createStatement();
+      if(conn->getError().isError()) //Checks for error.
+	{
+	  throw new GeneralException(conn->getError().getErrorMessage());
+	}
+
+      dbaccess::ODBCResultSet* res = stmt->executeQuery( DAOConstants::PROJSQL_GETID);
+      if(conn->getError().isError()) //Checks for error.
+	{
+	  throw new GeneralException(conn->getError().getErrorMessage());
+	}
+
+      if(!res->next())
+	{
+	  res->close();
+	  stmt->close();
+	  dbaccess::DBAccess::releaseConnection();
+	  throw new GeneralException("Error obtaining next Id");
+	}
+
+      std::string id = res->getString(1);
+      
+      res->close();
+      stmt->close();
+      
+      dbaccess::DBAccess::releaseConnection();
+
+      return id;
+	  
+    }catch(dbaccess::DBException* dbe)
+      {
+	throw new GeneralException(dbe->getMessage());
+      }
+	}
+  }
 };
 
 } //namespace idgen 
