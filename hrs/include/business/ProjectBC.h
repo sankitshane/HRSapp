@@ -49,10 +49,7 @@ class ProjectBC
    * @param none
    * @return none
    */
-  ProjectBC()
-	{
-		
-	}
+  ProjectBC();
 
 
   /**@fn ~ProjectBC

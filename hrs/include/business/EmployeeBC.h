@@ -1,8 +1,7 @@
 #ifndef EmployeeBC_H
 #define EmployeeBC_H
 
-#ifndef Null
-#define Null 0
+
 
 #include <common/EmployeeInfo.h>
 #include<common/AccentureDetails.h>
@@ -62,11 +61,7 @@ class EmployeeBC
      * @param none
      * @return none
      */
-  EmployeeBC()
-  {
-    m_empDao = Null;
-    m_empAccDao = Null;
-  }
+  EmployeeBC();
   // Check why it was not defined!!!!
 
 
@@ -75,11 +70,8 @@ class EmployeeBC
      * @param none
      * @return none
      */
-  ~EmployeeBC()
-  {
-    m_empDao = Null;
-    m_empAccDao = Null;
-  }//
+  ~EmployeeBC();
+  //
 
 
      /**@fn createEmployee
@@ -89,15 +81,7 @@ class EmployeeBC
      * @param reference to the Object of employeeInfo
      * @return void.
      */
-    void createEmployee(EmployeeInfo& info)
-    {
-      int id = idgen::EmpIdGen.getNextId();
-      info.setEmpNo = id;
-      m_empDao.create(info);
-      AccentureDetails AccDetails;
-      AccDetails.setEnterpriseId(id);
-      m_empAccDao.create(info);
-    }
+    void createEmployee(EmployeeInfo& info);
 
 
     /**@fn searchEmployee
@@ -106,11 +90,7 @@ class EmployeeBC
      * @param std::string
      * @return an object of the class employeeinfo.
      */
-    EmployeeInfo searchEmployee(std::string empno)
-    {
-      EmployeeInfo *empin = new EmployeeInfo;
-
-    }
+    EmployeeInfo searchEmployee(std::string empno);
 
    /**@fn searchEmployees
      *@brief This function searchs for employees

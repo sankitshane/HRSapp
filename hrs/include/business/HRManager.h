@@ -68,26 +68,14 @@ class HRManager
    * @param none
    * @return none
    */
-   HRManager()
-   {
-     m_empBC = Null;
-     m_skillBC = Null;
-     m_skillCatBC= Null;
-     m_projectBC= Null;
-   }
+   HRManager();
  public:
    /**@fn HRManager
    * @brief Destructor.
    * @param none
    * @return not applicable
    */
-  ~HRManager()
-  {
-    m_empBC = Null;
-    m_skillBC = Null;
-    m_skillCatBC= Null;
-    m_projectBC= Null;
-  }
+  ~HRManager();
 
 
    /**@fn getInstance
@@ -95,6 +83,19 @@ class HRManager
     * @param none
     * @return an object to HRManager.
     */
+<<<<<<< HEAD
+  static HRManager* getInstance(void);
+||||||| merged common ancestors
+  static HRManager* getInstance(void)
+    {
+      if (m_instance == Null)
+      {
+        HRManager * new_instance = new HRManager;
+        return new_instance;
+      }
+      return m_instance;
+    }
+=======
   static HRManager* getInstance(void)
     {
       if (m_instance == Null)
@@ -103,16 +104,14 @@ class HRManager
       }
       return m_instance;
     }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
    /**@fn createEmployee
     *@brief  This method uses createEmployee method of EmployeeBC.
    * @param Object of the class EmployeeInfo
    * @return nothing.
    */
-  void createEmployee(EmployeeInfo& info)
-    {
-      m_empBC.createEmployee(info);
-    }
+  void createEmployee(EmployeeInfo& info);
 
 
 
@@ -121,10 +120,19 @@ class HRManager
    * @param std::string
    * @return an object of the class employeeInfo.
    */
+<<<<<<< HEAD
+   EmployeeInfo searchEmployee(std::string empno);
+||||||| merged common ancestors
+   EmployeeInfo searchEmployee(std::string empno)
+   {
+     m_empBC.searchEmployee(empno);
+   }
+=======
    EmployeeInfo searchEmployee(std::string empno)
    {
      return m_empBC.searchEmployee(empno);
    }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
 
@@ -133,10 +141,19 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return the collection of employeeInfo .
    */
+<<<<<<< HEAD
+    std::vector<EmployeeInfo> searchEmployees(std::string info);
+||||||| merged common ancestors
+    std::vector<EmployeeInfo> searchEmployees(std::string info)
+    {
+      m_empBC.searchEmployees(info);
+    }
+=======
     std::vector<EmployeeInfo> searchEmployees(std::string info)
     {
       return m_empBC.searchEmployees(info);
     }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
   /**@fn updateEmployee
@@ -145,10 +162,19 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return none
    */
+<<<<<<< HEAD
+  void updateEmployee(EmployeeInfo& info);
+||||||| merged common ancestors
+  void updateEmployee(EmployeeInfo& info)
+  {
+    m_empBC.updateEmployee(info);
+  }
+=======
   void updateEmployee(EmployeeInfo& info)
   {
   m_empBC.updateEmployee(info);
   }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
   /**@fn createCategory
@@ -156,10 +182,7 @@ class HRManager
    * @param Object of the class SkillCategory
    * @return nothing.
    */
-  void createCategory(SkillCategory& info)
-  {
-    m_skillCatBC.createCategory(info);
-  }
+  void createCategory(SkillCategory& info);
 
 
    /**@fn searchCategory
@@ -167,10 +190,19 @@ class HRManager
    * @param std::string
    * @return an object of the class SkillCategory.
    */
+<<<<<<< HEAD
+   SkillCategory searchCategory(std::string id);
+||||||| merged common ancestors
+   SkillCategory searchCategory(std::string id)
+   {
+     m_skillCatBC.searchCategory(id);
+   }
+=======
    SkillCategory searchCategory(std::string id)
    {
      return m_skillCatBC.searchCategory(id);
    }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
    /**@fn searchCategories
@@ -178,10 +210,19 @@ class HRManager
    * @param Object of the class SkillCategory
    * @return an collection of SkillCategory.
    */
+<<<<<<< HEAD
+   std::vector<SkillCategory>  searchCategories(std::string dataFind);
+||||||| merged common ancestors
+   std::vector<SkillCategory>  searchCategories(std::string dataFind)
+   {
+     m_skillCatBC.searchCategories(dataFind);
+   }
+=======
    std::vector<SkillCategory>  searchCategories(std::string dataFind)
    {
      return m_skillCatBC.searchCategories(dataFind);
    }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
    /**@fn updateCategory
@@ -190,40 +231,52 @@ class HRManager
    * @param bject of the class SkillCategory
    * @return nothing.
    */
-  void updateCategory(SkillCategory& info)
-  {
-    m_skillCatBC.updateCategory(info);
-  }
+  void updateCategory(SkillCategory& info);
 
 
    /**This method uses createSkill method of EmployeeBC
    * @param Object of the class SkillInfornmation
    * @return nothing.
    */
-  void createSkill(SkillsInformation& info)
-  {
-    m_skillBC.createSkill(info);
-  }
+  void createSkill(SkillsInformation& info);
 
 
   /**This method uses searchSkill method of SkillBC.
    * @param std::string
    * @return an object of the class SkillInformation.
    */
+<<<<<<< HEAD
+   SkillsInformation searchSkill(std::string id);
+||||||| merged common ancestors
+   SkillsInformation searchSkill(std::string id)
+   {
+     m_skillBC.searchSkill(id);
+   }
+=======
    SkillsInformation searchSkill(std::string id)
    {
      return m_skillBC.searchSkill(id);
    }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
  /**This method uses searchSkills method of SkillCategoryBC.
    * @param Object of the class SkillInformation
    * @return an object of SkillInformation.
    */
+<<<<<<< HEAD
+   std::vector<SkillsInformation>  searchSkills(std::string name);
+||||||| merged common ancestors
+   std::vector<SkillsInformation>  searchSkills(std::string name)
+   {
+     m_skillBC.searchSkills(name);
+   }
+=======
    std::vector<SkillsInformation>  searchSkills(std::string name)
    {
      return m_skillBC.searchSkills(name);
    }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
    /**this function uses the updateSkill method of SkillBC.
@@ -231,40 +284,52 @@ class HRManager
    * @param Object of the class SkillInformation
    * @return none
    */
-  void updateSkill(SkillsInformation& info)
-  {
-    m_skillBC.updateSkill(info);
-  }
+  void updateSkill(SkillsInformation& info);
 
 
    /**This method uses createProject method of ProjectBC
    * @param Object of the class ProjectInfo
    * @return nothing.
    */
-  void createProject(ProjectInfo& info)
-  {
-    m_projectBC.createProject(info);
-  }
+  void createProject(ProjectInfo& info);
 
 
   /**This method uses searchProject method of ProjectBC.
    * @param std::string
    * @return an object of the class ProjectInfo.
    */
+<<<<<<< HEAD
+   ProjectInfo searchProject(std::string id);
+||||||| merged common ancestors
+   ProjectInfo searchProject(std::string id)
+   {
+     m_projectBC.searchProject(id);
+   }
+=======
    ProjectInfo searchProject(std::string id)
    {
      return m_projectBC.searchProject(id);
    }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
    /**This method uses searchApprovedPoject method of ProjectBC.
    * @param Object of the class Project Info
    * @return a collection of ProjectInformation.
    */
+<<<<<<< HEAD
+   std::vector<ProjectInfo>  searchProjects(std::string dataFind);
+||||||| merged common ancestors
+   std::vector<ProjectInfo>  searchProjects(std::string dataFind)
+   {
+     m_projectBC.searchProjects(dataFind);
+   }
+=======
    std::vector<ProjectInfo>  searchProjects(std::string dataFind)
    {
      return m_projectBC.searchProjects(dataFind);
    }
+>>>>>>> fb32a921932aa23e0fd80e6be50911ebeb06b16d
 
 
 
@@ -273,10 +338,7 @@ class HRManager
    * @param Object of the class ProjectInfo
    * @return none
    */
-  void updateProject(ProjectInfo& info)
-  {
-    m_projectBC.updateProject(info);
-  }
+  void updateProject(ProjectInfo& info);
 };
 
 } //namespace bc
