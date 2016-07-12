@@ -89,7 +89,7 @@ class SkillBC
    * @parama reference to the object of SkillInfo
    * @return none
    */
-  void updateSkill(ProjectInfo& info);
+  void updateSkill(SkillInfo& info);
 };
 
 } //namespace bc
