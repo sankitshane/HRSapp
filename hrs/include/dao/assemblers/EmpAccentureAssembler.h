@@ -1,11 +1,10 @@
+#ifndef EmpAccentureAssembler_H
+#define EmpAccentureAssembler_H
 
-#ifndef SkillCategoryAssembler_H
-#define SkillCategoryAssembler_H
-
-/**@file SkillCategoryAssembler.h
-* @brief: SkillCategoryAssembler
+/**@file EmpAccentureAssembler.h
+* @brief: EmpAccentureAssembler
 *
-* <BR>NAME:SkillCategoryAssembler
+* <BR>NAME:EmpAccentureAssembler
 *
 * <BR>BASE CLASSES:None
 *
@@ -22,10 +21,10 @@
 */
 
 
-/**@class SkillCategoryAssembler
-* @brief: Declaration of SkillCategoryAssembler
+/**@class EmpAccentureAssembler
+* @brief: Declaration of EmpAccentureAssembler
 * <PRE>The participants will be given the following Activity.
-* 1. Write a class SkillCategoryAssembler, which will enforce encapsulation.
+* 1. Write a class EmpAccentureAssembler, which will enforce encapsulation.
 * 2. Declare a function that will get value from the class EmployeeInfo.
 * 3. Declare a function that will get value from the database and set the value.
 </PRE>
@@ -35,9 +34,9 @@
 
 #include<dbaccess/ODBCResultSet.h>
 
-class SkillCategoryInfo;///<Forward declaration...
+class AccentureDetails;///<Forward declaration...
 
-class SkillCategoryAssembler
+class EmpAccentureAssembler
 {
 
   public:
@@ -48,7 +47,7 @@ class SkillCategoryAssembler
   * @return std::string.
   */
 
-	 static std::string assemble(SkillCategoryInfo& employee,std::string query);
+	 static std::string assemble(AccentureDetails& employee,std::string query);
 
 
  /**@fn disAssemble.
@@ -62,4 +61,4 @@ class SkillCategoryAssembler
 
 };
 
-#endif //SkillCategoryAssembler_H
+#endif //EmpAccentureAssembler_H

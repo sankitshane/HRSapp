@@ -69,7 +69,7 @@ namespace idgen {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      dbaccess::ODBCResultSet* res = stmt->executeQuery( DAOConstants::PROJSQL_GETID);
+      dbaccess::ODBCResultSet* res = stmt->executeQuery( DAOConstants::SKILLSQL_GETID);
       if(conn->getError().isError()) //Checks for error.
 	{
 	  throw new GeneralException(conn->getError().getErrorMessage());

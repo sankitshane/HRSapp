@@ -90,6 +90,7 @@ namespace bc {
 
         AccentureDetails AccDetails;
         AccDetails.setEnterpriseId(id);
+        info.setAccentureDetails(AccDetails);
         m_empAccDao.create(info);
 
         #ifdef ALOGGER
