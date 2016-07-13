@@ -30,13 +30,8 @@
  **/
 class SkillCategoryInfo : public HRSObject
 {
-	std::string m_client;
-
-	std::string m_startDate;
-
-	std::string m_endDate;
-
-	std::string m_SkillCategoryDescription;
+	
+std::string m_SkillCategoryDescription;
 
 	std::string m_SkillCategoryId;
 
@@ -53,12 +48,6 @@ public:
 //Getters
 	const std::string getClassName()const {return m_className;}
 
-	std::string  getClient() { return m_client;}
-
-	std::string  getStartDate() { return m_startDate; }
-
-	std::string  getEndDate() { return m_endDate; }
-
 	std::string  getSkillCategoryDescription( ) { return m_SkillCategoryDescription; }
 
 	std::string  getSkillCategoryId() { return m_SkillCategoryId; }
@@ -68,12 +57,6 @@ public:
 	std::string getStatus() { return m_status; }
 
 //Setters
-
- void setClient(std::string  client) { m_client = client; }
-
- void setStartDate(std::string  startDate) { m_startDate = startDate; }
-
- void setEndDate(std::string  endDate) { m_endDate = endDate; }
 
  void setSkillCategoryDescription(std::string  SkillCategoryDescription) { m_SkillCategoryDescription = SkillCategoryDescription; }
 

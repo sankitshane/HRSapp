@@ -83,7 +83,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlstmt = DAOConstants::PROJ_CREATE;
+      std::string sqlstmt = DAOConstants::EMPSQL_GETID;
 
 #ifdef ALOGGER
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlstmt.c_str() );
@@ -145,7 +145,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::PROJ_FIND_MAIN;
+      std::string sqlStmt = DAOConstants::EMP_FIND_MAIN;
 
       sqlStmt.replace( sqlStmt.find("%s"), 2, searchCriteria  );
 
@@ -201,7 +201,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::PROJ_FIND_ALL;
+      std::string sqlStmt = DAOConstants::EMPSQL_FIND_ALL;
 
 #ifdef ALOGGER
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlStmt.c_str());
@@ -259,7 +259,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::PROJ_FIND_BYPK;
+      std::string sqlStmt = DAOConstants::EMP_FIND_BYPK;
 
       EmployeeInfo* EmployeeReturn = NULL ;
 
@@ -327,7 +327,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlstmt = DAOConstants::PROJ_DELETE;
+      std::string sqlstmt = DAOConstants::EMP_DELETE;
 
       sqlstmt.replace(sqlstmt.find("%s"), 2, pkValue);
 
@@ -378,7 +378,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::PROJ_UPDATE_MAIN;
+      std::string sqlStmt = DAOConstants::EMP_UPDATE;
 
       EmployeeInfo info = static_cast<EmployeeInfo&>(piSet);
 

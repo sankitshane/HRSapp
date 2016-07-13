@@ -13,11 +13,9 @@ std::string SkillAssembler::assemble(SkillInfo& Skills,std::string query)
 
 	sprintf(buf,query.c_str(),
 				      Skills.getSkillId().c_str(),
+					  Skills.getSkillCatId().c_str(),
 					  Skills.getSkillName().c_str(),
 					  Skills.getSkillDescription().c_str(),
-					  Skills.getStartDate().c_str(),
-					  Skills.getEndDate().c_str(),
-					  Skills.getClient().c_str(),
 					  Skills.getStatus().c_str());
 
 	return std::string(buf);
@@ -27,16 +25,14 @@ std::string SkillAssembler::assemble(SkillInfo& Skills,std::string query)
   SkillInfo SkillAssembler::disAssemble(dbaccess::ODBCResultSet* rs)
   {
 
-	  SkillInfo proj;
+	  SkillInfo skill;
 
 
-	   proj.setSkillId( rs->getString( rs->getColNum("ID")) );
-	   proj.setSkillName( rs->getString( rs->getColNum("NAME")) );
-	   proj.setSkillDescription( rs->getString( rs->getColNum("DESCRIPTION")) );
-	   proj.setStartDate( rs->getDate( rs->getColNum("STARTDATE") ));
-	   proj.setEndDate( rs->getDate( rs->getColNum("ENDDATE")) );
-	   proj.setClient( rs->getString( rs->getColNum("CLIENTNAME")) );
-	   proj.setStatus( rs->getString( rs->getColNum("STATUS") ));
+	   skill.setSkillId( rs->getString( rs->getColNum("ID")) );
+	   skill.setSkillId( rs->getString( rs->getColNum("CATID")));
+	   skill.setSkillName( rs->getString( rs->getColNum("NAME")) );
+	   skill.setSkillDescription( rs->getString( rs->getColNum("DESCRIPTION")) );
+	   skill.setStatus( rs->getString( rs->getColNum("STATUS") ));
 
-	   return proj;
+	   return skill;
   }
