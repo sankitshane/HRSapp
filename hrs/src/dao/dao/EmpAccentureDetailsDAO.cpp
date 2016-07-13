@@ -215,7 +215,7 @@
             throw new GeneralException("Record Not Found.");
 
           do {
-      EmpAccInfo.push_back( new AccentureDetails(EmployeeAccentureAssembler::disAssemble(rs)) );
+      EmpAccInfo.push_back( new AccentureDetail(EmployeeAccentureAssembler::disAssemble(rs)) );
           } while( rs->next() );
 
           rs->close();
