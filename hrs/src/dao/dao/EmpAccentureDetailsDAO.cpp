@@ -53,7 +53,7 @@
       * @return none
       */
 
-   EmployeeAccentureDetailsDAO::EmployeeAccentureDetailsDAO()
+   EmpAccentureDetailsDAO::EmpAccentureDetailsDAO()
    {
 
    }
@@ -68,7 +68,7 @@
       * @return none
       */
 
-      void EmpAccentureDetailsDAO::create(HRSObject& AccentureDetails)
+      void EmpAccentureDetailsDAO::create(HRSObject& AccentureDetail)
       {
         try{
           dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
@@ -129,7 +129,7 @@
       std::vector<HRSObject*> EmpAccentureDetailsDAO::find(std::string searchCriteria)
       {
         try{
-          std::vector<HRSObject*> prjInfo;
+          std::vector<HRSObject*> EmpAccInfo;
 
           dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
           if(conn->getError().isError()) //Checks for error.
@@ -143,7 +143,7 @@
         throw new GeneralException(conn->getError().getErrorMessage());
       }
 
-          std::string sqlStmt = DAOConstants::PROJ_FIND_MAIN;
+          std::string sqlStmt = DAOConstants::EMPACC_FIND_MAIN;
 
           sqlStmt.replace( sqlStmt.find("%s"), 2, searchCriteria  );
 
@@ -162,14 +162,14 @@
             throw new GeneralException("Record Not Found.");
 
           do {
-      prjInfo.push_back(new AccentureDetails(EmployeeAccentureAssembler::disAssemble(rs))  );
+      EmpAccInfo.push_back(new AccentureDetail(EmployeeAccentureAssembler::disAssemble(rs))  );
           } while( rs->next() );
 
           rs->close();
           stmt->close();
           dbaccess::DBAccess::releaseConnection();
 
-          return prjInfo;
+          return EmpAccInfo;
         }catch(dbaccess::DBException* dbe)
           {
       throw new GeneralException(dbe->getMessage());
@@ -182,10 +182,10 @@
          * @param none
          * @return A vector of all AccentureDetails found in the table
          */
-      std::vector<HRSObject*> EmployeeAccentureDAO::findByAll()
+      std::vector<HRSObject*> EmpAccentureDetailsDAO::findByAll()
       {
         try{
-          std::vector<HRSObject*> prjInfo;
+          std::vector<HRSObject*> EmpAccInfo;
 
           dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
           if(conn->getError().isError()) //Checks for error.
@@ -199,7 +199,7 @@
         throw new GeneralException(conn->getError().getErrorMessage());
       }
 
-          std::string sqlStmt = DAOConstants::PROJ_FIND_ALL;
+          std::string sqlStmt = DAOConstants::EMPACC_FIND_ALL;
 
       #ifdef ALOGGER
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlStmt.c_str());
@@ -215,7 +215,7 @@
             throw new GeneralException("Record Not Found.");
 
           do {
-      prjInfo.push_back( new AccentureDetails(EmployeeAccentureAssembler::disAssemble(rs)) );
+      EmpAccInfo.push_back( new AccentureDetails(EmployeeAccentureAssembler::disAssemble(rs)) );
           } while( rs->next() );
 
           rs->close();
@@ -226,7 +226,7 @@
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
       #endif
 
-          return prjInfo;
+          return EmpAccInfo;
 
         }catch(dbaccess::DBException* dbe)
           {
@@ -242,7 +242,7 @@
          * @return AccentureDetails - Record Matching the pkValue
          */
 
-      HRSObject* EmployeeAccentureDAO::findByPK(std::string pkValue)
+      HRSObject* EmpAccentureDetailsDAO::findByPK(std::string pkValue)
       {
         try{
           dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
@@ -257,9 +257,9 @@
         throw new GeneralException(conn->getError().getErrorMessage());
       }
 
-          std::string sqlStmt = DAOConstants::PROJ_FIND_BYPK;
+          std::string sqlStmt = DAOConstants::EMPACC_FIND_BYPK;
 
-          AccentureDetails* EmployeeAccentureReturn = NULL ;
+          AccentureDetail* EmpAccentureReturn = NULL ;
 
           sqlStmt.replace( sqlStmt.find("%s"), 2, pkValue);
 
@@ -277,9 +277,9 @@
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "Query Executed");
       #endif
 
-          //Fill the empInfo object.
+
           if(rs->next())
-      EmployeeAccentureReturn = new AccentureDetails(EmployeeAccentureAssembler::disAssemble(rs));
+      EmpAccentureReturn = new AccentureDetail(AccentureDetailsAssembler::disAssemble(rs));
           else
             throw new GeneralException("Search by PK Failed");
 
@@ -295,7 +295,7 @@
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
       #endif
 
-          return EmployeeAccentureReturn;
+          return EmpAccentureReturn;
 
         }catch(dbaccess::DBException* dbe)
           {
@@ -310,7 +310,7 @@
          * @return bool - Status of deletion
          */
 
-      bool EmployeeAccentureDAO::remove( std::string pkValue)
+      bool EmpAccentureDAO::remove( std::string pkValue)
       {
         try{
           dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
@@ -325,7 +325,7 @@
         throw new GeneralException(conn->getError().getErrorMessage());
       }
 
-          std::string sqlstmt = DAOConstants::PROJ_DELETE;
+          std::string sqlstmt = DAOConstants::EMPACC_DELETE;
 
           sqlstmt.replace(sqlstmt.find("%s"), 2, pkValue);
 
@@ -361,7 +361,7 @@
          * @param piSet - the SET part of the UPDATE statement
          * @return bool - status of updatiom
          */
-      bool EmployeeAccentureDAO::update(HRSObject& piSet)
+      bool EmpAccentureDAO::update(HRSObject& piSet)
       {
         try{
           dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
@@ -376,9 +376,9 @@
         throw new GeneralException(conn->getError().getErrorMessage());
       }
 
-          std::string sqlStmt = DAOConstants::PROJ_UPDATE_MAIN;
+          std::string sqlStmt = DAOConstants::EMPACC_UPDATE;
 
-          AccentureDetails info = static_cast<AccentureDetails&>(piSet);
+          AccentureDetail info = static_cast<AccentureDetail&>(piSet);
 
           Transform t;
           std::string set = t.transform(info);

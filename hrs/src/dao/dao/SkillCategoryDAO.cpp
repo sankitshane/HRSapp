@@ -2,7 +2,7 @@
 #include<dbaccess/ODBCResultSet.h>
 #include<dbaccess/ODBCStatement.h>
 
-#include<common/SkillCategoryInfo.h>
+#include<common/SkillCategory.h>
 #include<common/GeneralException.h>
 
 #include<dao/SkillCategoryDAO.h>
@@ -131,7 +131,7 @@ namespace dao {
   std::vector<HRSObject*> SkillCategoryDAO::find(std::string searchCriteria)
   {
     try{
-      std::vector<HRSObject*> prjInfo;
+      std::vector<HRSObject*> scatInfo;
 
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
       if(conn->getError().isError()) //Checks for error.
@@ -145,7 +145,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::SKILL_FIND_MAIN;
+      std::string sqlStmt = DAOConstants::SKILLCAT_FIND_MAIN;
 
       sqlStmt.replace( sqlStmt.find("%s"), 2, searchCriteria  );
 
@@ -164,14 +164,14 @@ namespace dao {
         throw new GeneralException("Record Not Found.");
 
       do {
-	prjInfo.push_back(new SkillCategoryInfo(SkillCategoryAssembler::disAssemble(rs))  );
+	scatInfo.push_back(new SkillCategoryInfo(SkillCategoryAssembler::disAssemble(rs))  );
       } while( rs->next() );
 
       rs->close();
       stmt->close();
       dbaccess::DBAccess::releaseConnection();
 
-      return prjInfo;
+      return scatInfo;
     }catch(dbaccess::DBException* dbe)
       {
 	throw new GeneralException(dbe->getMessage());
@@ -187,7 +187,7 @@ namespace dao {
   std::vector<HRSObject*> SkillCategoryDAO::findByAll()
   {
     try{
-      std::vector<HRSObject*> prjInfo;
+      std::vector<HRSObject*> scatInfo;
 
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
       if(conn->getError().isError()) //Checks for error.
@@ -201,7 +201,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::SKILL_FIND_ALL;
+      std::string sqlStmt = DAOConstants::SKILLCAT_FIND_ALL;
 
 #ifdef ALOGGER
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlStmt.c_str());
@@ -217,7 +217,7 @@ namespace dao {
         throw new GeneralException("Record Not Found.");
 
       do {
-	prjInfo.push_back( new SkillCategoryInfo(SkillCategoryAssembler::disAssemble(rs)) );
+	scatInfo.push_back( new SkillCategoryInfo(SkillCategoryAssembler::disAssemble(rs)) );
       } while( rs->next() );
 
       rs->close();
@@ -228,7 +228,7 @@ namespace dao {
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
 #endif
 
-      return prjInfo;
+      return scatInfo;
 
     }catch(dbaccess::DBException* dbe)
       {
@@ -259,9 +259,9 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::SKILL_FIND_BYPK;
+      std::string sqlStmt = DAOConstants::SKILLCAT_FIND_BYPK;
 
-      SkillCategoryInfo* SkillCategoryReturn = NULL ;
+      SkillCategory* SkillCategoryReturn = NULL ;
 
       sqlStmt.replace( sqlStmt.find("%s"), 2, pkValue);
 
@@ -281,7 +281,7 @@ namespace dao {
 
       //Fill the empInfo object.
       if(rs->next())
-	SkillCategoryReturn = new SkillCategoryInfo(SkillCategoryAssembler::disAssemble(rs));
+	SkillCategoryReturn = new SkillCategory(SkillCategoryAssembler::disAssemble(rs));
       else
         throw new GeneralException("Search by PK Failed");
 
@@ -327,7 +327,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlstmt = DAOConstants::SKILL_DELETE;
+      std::string sqlstmt = DAOConstants::SKILLCAT_DELETE;
 
       sqlstmt.replace(sqlstmt.find("%s"), 2, pkValue);
 
@@ -378,9 +378,9 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlStmt = DAOConstants::SKILL_UPDATE_MAIN;
+      std::string sqlStmt = DAOConstants::SKILLCAT_UPDATE_MAIN;
 
-      SkillCategoryInfo info = static_cast<SkillCategoryInfo&>(piSet);
+      SkillCategory info = static_cast<SkillCategory&>(piSet);
 
       Transform t;
       std::string set = t.transform(info);

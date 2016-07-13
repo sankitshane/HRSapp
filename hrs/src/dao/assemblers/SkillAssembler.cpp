@@ -3,16 +3,16 @@
 #include <string>
 
 #include<dao/assemblers/SkillAssembler.h>
-#include<common/SkillInfo.h>
+#include<common/SkillInformation.h>
 #include<dbaccess/ODBCResultSet.h>
 
-std::string SkillAssembler::assemble(SkillInfo& Skills,std::string query)
+std::string SkillAssembler::assemble(SkillInformation& Skills,std::string query)
 
 {
 	char buf[1024];
 
 	sprintf(buf,query.c_str(),
-				      Skills.getSkillId().c_str(),
+				    Skills.getSkillId().c_str(),
 					  Skills.getSkillCatId().c_str(),
 					  Skills.getSkillName().c_str(),
 					  Skills.getSkillDescription().c_str(),
@@ -25,7 +25,7 @@ std::string SkillAssembler::assemble(SkillInfo& Skills,std::string query)
   SkillInfo SkillAssembler::disAssemble(dbaccess::ODBCResultSet* rs)
   {
 
-	  SkillInfo skill;
+	  SkillInformation skill;
 
 
 	   skill.setSkillId( rs->getString( rs->getColNum("ID")) );

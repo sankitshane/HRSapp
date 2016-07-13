@@ -83,7 +83,7 @@ namespace dao {
 	  throw new GeneralException(conn->getError().getErrorMessage());
 	}
 
-      std::string sqlstmt = DAOConstants::EMPSQL_GETID;
+      std::string sqlstmt = DAOConstants::EMPSQL_CREATE;
 
 #ifdef ALOGGER
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlstmt.c_str() );
@@ -131,7 +131,7 @@ namespace dao {
   std::vector<HRSObject*> EmployeeDAO::find(std::string searchCriteria)
   {
     try{
-      std::vector<HRSObject*> prjInfo;
+      std::vector<HRSObject*> EmpInfo;
 
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
       if(conn->getError().isError()) //Checks for error.
@@ -164,14 +164,14 @@ namespace dao {
         throw new GeneralException("Record Not Found.");
 
       do {
-	prjInfo.push_back(new EmployeeInfo(EmployeeAssembler::disAssemble(rs))  );
+	EmpInfo.push_back(new EmployeeInfo(EmployeeAssembler::disAssemble(rs))  );
       } while( rs->next() );
 
       rs->close();
       stmt->close();
       dbaccess::DBAccess::releaseConnection();
 
-      return prjInfo;
+      return EmpInfo;
     }catch(dbaccess::DBException* dbe)
       {
 	throw new GeneralException(dbe->getMessage());
@@ -187,7 +187,7 @@ namespace dao {
   std::vector<HRSObject*> EmployeeDAO::findByAll()
   {
     try{
-      std::vector<HRSObject*> prjInfo;
+      std::vector<HRSObject*> EmpInfo;
 
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
       if(conn->getError().isError()) //Checks for error.
@@ -217,7 +217,7 @@ namespace dao {
         throw new GeneralException("Record Not Found.");
 
       do {
-	prjInfo.push_back( new EmployeeInfo(EmployeeAssembler::disAssemble(rs)) );
+	EmpInfo.push_back( new EmployeeInfo(EmployeeAssembler::disAssemble(rs)) );
       } while( rs->next() );
 
       rs->close();
@@ -228,7 +228,7 @@ namespace dao {
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
 #endif
 
-      return prjInfo;
+      return EmpInfo;
 
     }catch(dbaccess::DBException* dbe)
       {

@@ -2,7 +2,7 @@
 #include<dbaccess/ODBCResultSet.h>
 #include<dbaccess/ODBCStatement.h>
 
-#include<common/SkillInfo.h>
+#include<common/SkillInformation.h>
 #include<common/GeneralException.h>
 
 #include<dao/SkillDAO.h>
@@ -68,7 +68,7 @@ namespace dao {
      * @return none
      */
 
-  void SkillDAO::create(HRSObject& SkillInfo)
+  void SkillDAO::create(HRSObject& SkillInformation)
   {
     try{
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
@@ -89,7 +89,7 @@ namespace dao {
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlstmt.c_str() );
 #endif
 
-      sqlstmt = SkillAssembler::assemble(static_cast<SkillInfo&>(SkillInfo), sqlstmt);
+      sqlstmt = SkillAssembler::assemble(static_cast<SkillInfrmationo&>(SkillInformation), sqlstmt);
 
 #ifdef ALOGGER
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlstmt.c_str() );
@@ -131,7 +131,7 @@ namespace dao {
   std::vector<HRSObject*> SkillDAO::find(std::string searchCriteria)
   {
     try{
-      std::vector<HRSObject*> prjInfo;
+      std::vector<HRSObject*> sklInfo;
 
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
       if(conn->getError().isError()) //Checks for error.
@@ -164,14 +164,14 @@ namespace dao {
         throw new GeneralException("Record Not Found.");
 
       do {
-	prjInfo.push_back(new SkillInfo(SkillAssembler::disAssemble(rs))  );
+	sklInfo.push_back(new SkillInformation(SkillAssembler::disAssemble(rs))  );
       } while( rs->next() );
 
       rs->close();
       stmt->close();
       dbaccess::DBAccess::releaseConnection();
 
-      return prjInfo;
+      return sklInfo;
     }catch(dbaccess::DBException* dbe)
       {
 	throw new GeneralException(dbe->getMessage());
@@ -187,7 +187,7 @@ namespace dao {
   std::vector<HRSObject*> SkillDAO::findByAll()
   {
     try{
-      std::vector<HRSObject*> prjInfo;
+      std::vector<HRSObject*> sklInfo;
 
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
       if(conn->getError().isError()) //Checks for error.
@@ -217,7 +217,7 @@ namespace dao {
         throw new GeneralException("Record Not Found.");
 
       do {
-	prjInfo.push_back( new SkillInfo(SkillAssembler::disAssemble(rs)) );
+	sklInfo.push_back( new SkillInformation(SkillAssembler::disAssemble(rs)) );
       } while( rs->next() );
 
       rs->close();
@@ -228,7 +228,7 @@ namespace dao {
       logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
 #endif
 
-      return prjInfo;
+      return sklInfo;
 
     }catch(dbaccess::DBException* dbe)
       {
@@ -261,7 +261,7 @@ namespace dao {
 
       std::string sqlStmt = DAOConstants::SKILL_FIND_BYPK;
 
-      SkillInfo* SkillReturn = NULL ;
+      SkillInformation* SkillReturn = NULL ;
 
       sqlStmt.replace( sqlStmt.find("%s"), 2, pkValue);
 
@@ -281,7 +281,7 @@ namespace dao {
 
       //Fill the empInfo object.
       if(rs->next())
-	SkillReturn = new SkillInfo(SkillAssembler::disAssemble(rs));
+	SkillReturn = new SkillInformation(SkillAssembler::disAssemble(rs));
       else
         throw new GeneralException("Search by PK Failed");
 
@@ -380,7 +380,7 @@ namespace dao {
 
       std::string sqlStmt = DAOConstants::SKILL_UPDATE_MAIN;
 
-      SkillInfo info = static_cast<SkillInfo&>(piSet);
+      SkillInformation info = static_cast<SkillInformation&>(piSet);
 
       Transform t;
       std::string set = t.transform(info);
