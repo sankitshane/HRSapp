@@ -6,7 +6,7 @@
 
 #include<dao/DAOConstants.h>
 
-#include<business/idgen/SkillCategoryIdGen.h>
+#include<business/idgen/CategoryIdGen.h>
 #include<dbaccess/ODBCConnection.h>
 #include<dbaccess/ODBCResultSet.h>
 #include<dbaccess/ODBCStatement.h>
@@ -17,7 +17,7 @@
 
 namespace idgen {
 
-  SkillCategoryIdGen* SkillCategoryIdGen::m_thisInstance = NULL;
+  CategoryIdGen* CategoryIdGen::m_thisInstance = NULL;
 
   /**@class SkillCategoryIdGen
    * @brief Declaration of SkillCategoryIdGen
@@ -32,7 +32,7 @@ namespace idgen {
    </PRE>
   */
 
-  SkillCategoryIdGen::SkillCategoryIdGen()
+  CategoryIdGen::CategoryIdGen()
   {
   }
 
@@ -42,10 +42,10 @@ namespace idgen {
    * @param none
    * @return Pointer to SkillCategoryIdGen.
    */
-  static SkillCategoryIdGen* SkillCategoryIdGen::getInstance()
+  static CategoryIdGen* CategoryIdGen::getInstance()
   {
     if(m_thisInstance == NULL)
-      m_thisInstance = new SkillCategoryIdGen;
+      m_thisInstance = new CategoryIdGen;
     return m_thisInstance;
   }
 
@@ -55,7 +55,7 @@ namespace idgen {
    * @param none.
    * @return string.
    */
-  std::string SkillCategoryIdGen::getNextId()
+  std::string CategoryIdGen::getNextId()
   {
     try{
       dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();

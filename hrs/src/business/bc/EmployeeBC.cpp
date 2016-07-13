@@ -1,9 +1,9 @@
 #ifndef Null
-#define Null 0
+#define Null "\0"
 
 #include<business/EmployeeBC.h>
 #include <common/EmployeeInfo.h>
-#include<common/AccentureDetails.h>
+#include<common/AccentureDetail.h>
 #include <dao/EmployeeDAO.h>
 #include <dao/EmpAccentureDetailsDAO.h>
 
@@ -78,7 +78,7 @@ namespace bc {
             logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "About to get unique id");
         #endif
 
-        std::string id=(idgen::ProjectIdGen::getInstance())->getNextId();
+        std::string id=(idgen::EmpIdGen::getInstance())->getNextId();
 
         #ifdef ALOGGER
             logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, id.c_str());
@@ -88,9 +88,8 @@ namespace bc {
         m_empDao.create(info);
 
 
-        AccentureDetails AccDetails;
+        AccentureDetails AccDetails = info.getAccentureDetails();
         AccDetails.setEnterpriseId(id);
-        info.setAccentureDetails(AccDetails);
         m_empAccDao.create(info);
 
         #ifdef ALOGGER
@@ -126,10 +125,12 @@ namespace bc {
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, id.c_str() );
       #endif
 
-      accDetailsptr = static_cast<AccentureDetails*>(m_empDAO.findByPK(id));
+      accDetailsptr = static_cast<AccentureDetail*>(m_empAccDAO.findByPK(id));
 
       accDetails = *accDetailsptr;
       delete accDetailsptr;
+
+	  eInfo.setAccentureDetails(accDetails);
 
       return eInfo;
 
@@ -175,6 +176,11 @@ namespace bc {
         empListPtr.clear();
         accListptr.clear();
 
+		for(int i =0;i< size; ++i)
+        {
+          empList[i].setAccentureDetails(accList[i]);
+        }
+
         return emplist;
 
     }
@@ -194,8 +200,9 @@ namespace bc {
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
       #endif
 
-      m_empDAO.update(info);
-      m_empAccDao.update(info);
+      m_empDAO.update(piSet);
+      m_empAccDao.update(piSet.getAccentureDetails());
+
     }
 };
 

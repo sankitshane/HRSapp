@@ -1,5 +1,5 @@
 #include<business/SkillCategoryBC.h>
-#include<common/SkillCategory.h>
+#include<common/SkillCategoryInfo.h>
 #include<dao/SkillCategoryDAO.h>
 #include<business/idgen/SkillCategoryIdGen.h>
 
@@ -50,13 +50,13 @@ namespace bc{
    * @param reference to the objectof SkillCategoryInfo
    * @return nothing.
    */
-  void SkillCategoryBC::createSkillCategory(SkillCategory& info)
+  void SkillCategoryBC::createSkillCategory(SkillCategoryInfo& info)
   {
 #ifdef ALOGGER
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "About to get unique id");
 #endif
 
-    std::string id=(idgen::CategoryIdGen::getInstance())->getNextId();
+    std::string id=(idgen::SkillCategoryIdGen::getInstance())->getNextId();
 
 #ifdef ALOGGER
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, id.c_str());
@@ -79,17 +79,17 @@ namespace bc{
    * @param std::string id
    * @return an object of the class SkillCategoryinfo.
    */
-  SkillCategory SkillCategoryBC::searchCategory(std::string id)
+  SkillCategoryInfo SkillCategoryBC::searchCategory(std::string id)
   {
-    SkillCategory catInfo;
-    SkillCategory* catInfoPtr = NULL;
+    SkillCategoryInfo catInfo;
+    SkillCategoryInfo* catInfoPtr = NULL;
 
 
 #ifdef ALOGGER
     //logger::Logger::getInstance().info("EmployeeBC::searchEmployee::searching an Employee");
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, id.c_str() );
 #endif
-    catInfoPtr = static_cast<SkillCategory*>(m_SkillCategoryDAO.findByPK(id));//we may overload == operator in SkillCategoryInfo
+    catInfoPtr = static_cast<SkillCategoryInfo*>(m_SkillCategoryDAO.findByPK(id));//we may overload == operator in SkillCategoryInfo
 
     catInfo = *catInfoPtr;
     delete catInfoPtr;
@@ -102,14 +102,14 @@ namespace bc{
    * @param an reference to the object of SkillCategoryInfo.
    * @return a set of objects to the class SkillCategoryinfo.
    */
-  std::vector<SkillCategory> SkillCategoryBC::searchCategorys(std::string name)
+  std::vector<SkillCategoryInfo> SkillCategoryBC::searchCategorys(std::string name)
   {
 
 #ifdef ALOGGER
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, name.c_str() );
 #endif
 
-    std::vector<SkillCategory> catList;
+    std::vector<SkillCategoryInfo> catList;
 
     std::vector<HRSObject*> catListPtr;
     catListPtr = m_SkillCategoryDAO.find(name);
@@ -117,7 +117,7 @@ namespace bc{
     int size = catListPtr.size();
     for(int i = 0; i < size; ++i)
       {
-	catList.push_back( *(static_cast<SkillCategory*>(catListPtr[i])) );
+	catList.push_back( *(static_cast<SkillCategoryInfo*>(catListPtr[i])) );
       }
     for(int i = 0; i < size; ++i)
       delete catListPtr[i];
@@ -135,7 +135,7 @@ namespace bc{
    * @param an reference to the object of SkillCategoryinfo
    * @return none
    */
-  void SkillCategoryBC::updateCategory(SkillCategory& info)
+  void SkillCategoryBC::updateCategory(SkillCategoryInfo& info)
   {
 #ifdef ALOGGER
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");

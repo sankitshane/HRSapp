@@ -1,5 +1,5 @@
 #include<business/SkillBC.h>
-#include<common/SkillInfo.h>
+#include<common/SkillInformation.h>
 #include<dao/SkillDAO.h>
 #include<business/idgen/SkillIdGen.h>
 
@@ -50,7 +50,7 @@ namespace bc{
    * @param reference to the objectof SkillInfo
    * @return nothing.
    */
-  void SkillBC::createSkill(SkillInfo& info)
+  void SkillBC::createSkill(SkillInformation& info)
   {
 #ifdef ALOGGER
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "About to get unique id");
@@ -89,7 +89,7 @@ namespace bc{
     //logger::Logger::getInstance().info("EmployeeBC::searchEmployee::searching an Employee");
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, id.c_str() );
 #endif
-    skInfoPtr = static_cast<SkillInfo*>(m_SkillDAO.findByPK(id));//we may overload == operator in SkillInfo
+    skInfoPtr = static_cast<SkillInformation*>(m_SkillDAO.findByPK(id));//we may overload == operator in SkillInfo
 
     skInfo = *skInfoPtr;
     delete skInfoPtr;
@@ -102,7 +102,7 @@ namespace bc{
    * @param an reference to the object of SkillInfo.
    * @return a set of objects to the class Skillinfo.
    */
-  std::vector<SkillInfo> SkillBC::searchSkills(std::string name)
+  std::vector<SkillInformation> SkillBC::searchSkills(std::string name)
   {
 
 #ifdef ALOGGER
@@ -117,7 +117,7 @@ namespace bc{
     int size = sklListPtr.size();
     for(int i = 0; i < size; ++i)
       {
-	sklList.push_back( *(static_cast<SkillInfo*>(sklListPtr[i])) );
+	sklList.push_back( *(static_cast<SkillInformation*>(sklListPtr[i])) );
       }
     for(int i = 0; i < size; ++i)
       delete sklListPtr[i];
@@ -135,7 +135,7 @@ namespace bc{
    * @param an reference to the object of Skillinfo
    * @return none
    */
-  void SkillBC::updateSkill(SkillInfo& info)
+  void SkillBC::updateSkill(SkillInformation& info)
   {
 #ifdef ALOGGER
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");

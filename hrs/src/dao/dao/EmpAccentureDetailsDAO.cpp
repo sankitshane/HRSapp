@@ -2,7 +2,7 @@
 #include<dbaccess/ODBCResultSet.h>
 #include<dbaccess/ODBCStatement.h>
 
-#include<common/AccentureDetails.h>
+#include<common/AccentureDetail.h>
 #include<common/GeneralException.h>
 
 #include<dao/EmpAccentureDetailsDAO.h>
@@ -13,7 +13,7 @@
 
 #include<dao/DAOConstants.h>
 
-#include<dao/assemblers/AccentureAssembler.h>
+#include<dao/assemblers/AccentureDetailsAssembler.h>
 #include<dao/Transforms.h>
 
 #include<vector>
@@ -53,7 +53,7 @@
       * @return none
       */
 
-   EmployeeAccentureDAO::EmployeeAccentureDAO()
+   EmployeeAccentureDetailsDAO::EmployeeAccentureDetailsDAO()
    {
 
    }
@@ -68,7 +68,7 @@
       * @return none
       */
 
-      void EmployeeAccentureDAO::create(HRSObject& AccentureDetails)
+      void EmpAccentureDetailsDAO::create(HRSObject& AccentureDetails)
       {
         try{
           dbaccess::ODBCConnection* conn = dbaccess::DBAccess::getConnection();
@@ -89,7 +89,7 @@
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlstmt.c_str() );
     #endif
 
-          sqlstmt = EmployeeAccentureAssembler::assemble(static_cast<AccentureDetails&>(AccentureDetails), sqlstmt);
+          sqlstmt = AccentureDetailsAssembler::assemble(static_cast<AccentureDetail&>(AccentureDetail), sqlstmt);
 
     #ifdef ALOGGER
           logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, sqlstmt.c_str() );
@@ -126,7 +126,7 @@
         * @param The condition to be specified while searching for records
         * @return A vector of AccentureDetails matching the criteria
         */
-      std::vector<HRSObject*> EmployeeAccentureDAO::find(std::string searchCriteria)
+      std::vector<HRSObject*> EmpAccentureDetailsDAO::find(std::string searchCriteria)
       {
         try{
           std::vector<HRSObject*> prjInfo;
