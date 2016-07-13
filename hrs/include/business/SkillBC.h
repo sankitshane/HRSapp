@@ -1,5 +1,6 @@
 #ifndef SKILLBC_H
 #define SKILLBC_H
+
 #include <string>
 #include <vector>
 
@@ -64,7 +65,7 @@ class SkillBC
    * @param a reference to the object of SkillInfo
    * @return nothing.
    */
-  void createSkill(SkillInfo& info);
+  void createSkill(SkillInformation& info);
 
 
   /**@fn searchSkill
@@ -72,14 +73,14 @@ class SkillBC
    * @param std::string
    * @return an object of the class Skillinfo.
    */
-   ProjectInfo searchSkill(std::string id);
+   SkillInformation searchSkill(std::string id);
 
   /**@fn searchSkills
    * @brief it seerchs for a collection of skills
    * @param std::string
    * @return a set of objects to the class Skillinfo.
    */
-   std::vector<ProjectInfo> searchSkills(std::string dataFind);
+   std::vector<SkillInformation> searchSkills(std::string dataFind);
 
 
   /**@fn updateSkill
@@ -89,7 +90,7 @@ class SkillBC
    * @parama reference to the object of SkillInfo
    * @return none
    */
-  void updateSkill(SkillInfo& info);
+  void updateSkill(SkillInformation& info);
 };
 
 } //namespace bc

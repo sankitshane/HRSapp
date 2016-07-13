@@ -23,7 +23,7 @@
 */
 
 #include <string>
-#include<common/AccentureDetails.h>
+#include<common/AccentureDetail.h>
 #include <common/HRSObject.h>
 
 /**@class EmployeeInfo

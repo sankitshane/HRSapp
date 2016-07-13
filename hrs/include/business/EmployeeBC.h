@@ -4,7 +4,7 @@
 
 
 #include <common/EmployeeInfo.h>
-#include<common/AccentureDetails.h>
+#include<common/AccentureDetail.h>
 #include <dao/EmployeeDAO.h>
 #include <dao/EmpAccentureDetailsDAO.h>
 

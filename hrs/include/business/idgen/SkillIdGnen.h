@@ -1,5 +1,5 @@
-#ifndef SkillIDGEN_H
-#define SkillIDGEN_H
+#ifndef SKILLIDGEN_H
+#define SKILLIDGEN_H
 
 #include<string>
 

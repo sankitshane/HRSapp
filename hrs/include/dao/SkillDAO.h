@@ -1,8 +1,8 @@
 // SkillDAO.h : The DAO layer responsible for direct interaction with the
 // database for Skill related issues.
 
-#ifndef SkillDAO_H
-#define SkillDAO_H
+#ifndef SKILLDAO_H
+#define SKILLDAO_H
 
 /**@file SkillDAO.h
  *@brief Delares Data Access Object for Skill.
@@ -25,7 +25,7 @@
 #include<vector>
 #include<string>
 
-#include<common/SkillInfo.h>
+#include<common/SkillInformation.h>
 #include <dao/DAO.h>
 #include <common/HRSObject.h>
 
@@ -71,7 +71,7 @@ namespace dao {
      * @param A reference to SkillInfo object containing Skill data
      * @return none
      */
-    void create(HRSObject& SkillInfo);
+    void create(HRSObject& SkillInformation);
 
     /**@fn find(std::string searchCriteria)
      * @brief Search the records with the given criteria

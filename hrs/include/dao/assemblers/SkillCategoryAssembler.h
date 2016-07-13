@@ -1,6 +1,6 @@
 
-#ifndef SkillCategoryAssembler_H
-#define SkillCategoryAssembler_H
+#ifndef SKILLCATEGORYASSEMBLER_H
+#define SKILLCATEGORYASSEMBLER_H
 
 /**@file SkillCategoryAssembler.h
 * @brief: SkillCategoryAssembler
@@ -35,7 +35,7 @@
 
 #include<dbaccess/ODBCResultSet.h>
 
-class SkillCategoryInfo;///<Forward declaration...
+class SkillCategory;///<Forward declaration...
 
 class SkillCategoryAssembler
 {
@@ -48,7 +48,7 @@ class SkillCategoryAssembler
   * @return std::string.
   */
 
-	 static std::string assemble(SkillCategoryInfo& employee,std::string query);
+	 static std::string assemble(SkillCategory& employee,std::string query);
 
 
  /**@fn disAssemble.
@@ -56,7 +56,7 @@ class SkillCategoryAssembler
   * @param Pointer to the object of the class ODBCResultSet.
   * @return none.
   */
-	  static EmployeeInfo disAssemble(dbaccess::ODBCResultSet* rs);
+	  static SkillCategory disAssemble(dbaccess::ODBCResultSet* rs);
 
 
 

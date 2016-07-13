@@ -1,9 +1,10 @@
 #ifndef SkillCategoryBC_H
 #define SkillCategoryBC_H
+
 #include <string>
 #include <vector>
 
-class SkillCategoryInfo;
+class SkillCategory;
 
 #include<dao/SkillCategoryDAO.h>
 
@@ -66,7 +67,7 @@ class SkillCategoryBC
    * @param a reference to the object of SkillCategoryInfo
    * @return nothing.
    */
-  void createCategory(SkillCategoryInfo& info);
+  void createCategory(SkillCategory& info);
 
 
   /**@fn searchSkillCategory
@@ -74,14 +75,14 @@ class SkillCategoryBC
    * @param std::string
    * @return an object of the class SkillCategoryinfo.
    */
-   SkillCategoryInfo searchCategory(std::string id);
+   SkillCategory searchCategory(std::string id);
 
   /**@fn searchSkillCategorys
    * @brief it seerchs for a collection of SkillCategorys
    * @param std::string
    * @return a set of objects to the class SkillCategoryinfo.
    */
-   std::vector<SkillCategoryInfo> searchCategorys(std::string dataFind);
+   std::vector<SkillCategory> searchCategorys(std::string dataFind);
 
 
   /**@fn updateSkillCategory
@@ -91,7 +92,7 @@ class SkillCategoryBC
    * @parama reference to the object of SkillCategoryInfo
    * @return none
    */
-  void updateCategory(SkillCategoryInfo& info);
+  void updateCategory(SkillCategory& info);
 };
 
 } //namespace bc
