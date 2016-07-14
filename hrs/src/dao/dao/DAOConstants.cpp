@@ -28,15 +28,11 @@ std::string DAOConstants::PROJ_FIND_ALL = "SELECT * FROM project";
 			
 std::string DAOConstants::EMPSQL_UPDATE = "UPDATE employee SET %s WHERE EMPNO='%s'";
 std::string DAOConstants::EMPSQL_DELETE = "DELETE employee WHERE empno = '%s'";
-/*
 std::string DAOConstants::EMPSQL_FIND_MAIN = "SELECT EMPNO,FIRSTNAME,LASTNAME,MIDDLENAME,DATEOFBIRTH,  round( months_between(sysdate, dateofbirth)/12) AGE,GENDER,CIVILSTATUS,CITIZENSHIP,SSSNO,TINNO,MOBILENO,HOMENO,STADD1,STADD2,CITY,PROVINCE,COUNTRY,EDUCATTAINMENT,RECOGNITION FROM employee WHERE %s";
 std::string DAOConstants::EMPSQL_FIND_BYPK = "SELECT EMPNO,FIRSTNAME,LASTNAME,MIDDLENAME,DATEOFBIRTH,  round( months_between(sysdate, dateofbirth)/12) AGE,GENDER,CIVILSTATUS,CITIZENSHIP,SSSNO,TINNO,MOBILENO,HOMENO,STADD1,STADD2,CITY,PROVINCE,COUNTRY,EDUCATTAINMENT,RECOGNITION FROM employee WHERE empno = '%s'";
 std::string DAOConstants::EMPSQL_FIND_ALL = "SELECT EMPNO,FIRSTNAME,LASTNAME,MIDDLENAME,DATEOFBIRTH,  round( months_between(sysdate, dateofbirth)/12) AGE,GENDER,CIVILSTATUS,CITIZENSHIP,SSSNO,TINNO,MOBILENO,HOMENO,STADD1,STADD2,CITY,PROVINCE,COUNTRY,EDUCATTAINMENT,RECOGNITION FROM employee";
-*/
 
-std::string DAOConstants::EMPSQL_FIND_MAIN = "SELECT EMPNO,FIRSTNAME,LASTNAME,MIDDLENAME,DATEOFBIRTH, AGE,GENDER,CIVILSTATUS,CITIZENSHIP,SSSNO,TINNO,MOBILENO,HOMENO,STADD1,STADD2,CITY,PROVINCE,COUNTRY,EDUCATTAINMENT,RECOGNITION FROM employee WHERE %s";
-std::string DAOConstants::EMPSQL_FIND_BYPK = "SELECT EMPNO,FIRSTNAME,LASTNAME,MIDDLENAME,DATEOFBIRTH, AGE,GENDER,CIVILSTATUS,CITIZENSHIP,SSSNO,TINNO,MOBILENO,HOMENO,STADD1,STADD2,CITY,PROVINCE,COUNTRY,EDUCATTAINMENT,RECOGNITION FROM employee WHERE empno = '%s'";
-std::string DAOConstants::EMPSQL_FIND_ALL = "SELECT EMPNO,FIRSTNAME,LASTNAME,MIDDLENAME,DATEOFBIRTH,AGE,GENDER,CIVILSTATUS,CITIZENSHIP,SSSNO,TINNO,MOBILENO,HOMENO,STADD1,STADD2,CITY,PROVINCE,COUNTRY,EDUCATTAINMENT,RECOGNITION FROM employee";
+
 
 	// constants for employee accenture details create, update, delete, queries
 
@@ -48,12 +44,12 @@ std::string DAOConstants::EMPACC_FIND_ALL = "SELECT * FROM empaccenturedetail";
 
 
 std::string DAOConstants::EMPSQL_CREATE  = "INSERT INTO employee (" 
-			" empno, firstname, lastname, middlename, dateofbirth, age,"
+			" empno, firstname, lastname, middlename, dateofbirth,"
 			" gender, civilstatus, citizenship, sssno, tinno,"
 			" mobileno, homeno, stadd1, stadd2, city, province,"
 			" country, educattainment, recognition )" 
-			"VALUES ('%s', '%s', '%s', '%s', '%s', %s, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s',"
-			" '%s', '%s' ,'%s','%s', '%s') ";
+			"VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s',"
+			" '%s', '%s' ,'%s','%s') ";
 
 
 std::string DAOConstants::EMPACC_CREATE = "INSERT INTO empaccenturedetail(empno, enterpriseid, " 

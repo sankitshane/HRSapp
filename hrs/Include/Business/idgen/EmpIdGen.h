@@ -1,26 +1,23 @@
 #ifndef EMPIDGEN_H
 #define EMPIDGEN_H
 
-#ifndef Null
-#define Null 0
-
 #include<string>
 
 /**@file EmpIdGen.h
 * @brief Declares the EmpIdGen
 *
 * <BR>NAME:EmpIdGen
-*
+* 
 * <BR>BASE CLASSES:None
-*
+* 
 * <BR>PURPOSE:To generate employee id.
 *
-* <BR>AUTHOR:Smitha Manjunath
+* <BR>AUTHOR:Smitha Manjunath	
 * <BR>
 * <BR>$Revision: $12/14/2005
-*
+* 
 * <BR>$Log:12/14/2005
-*
+* 
 * <BR>COPYRIGHT NOTICE:
 * <BR>Copyright (c) 2005 C++ Capability team at Accenture. All rights reserved.
 */
@@ -30,7 +27,7 @@
  */
 
 namespace idgen {
-
+	
 /**@class EmpIdGen
 * @brief  Declaration of EmpIdGen
 * <PRE>This class shall do the following
@@ -42,7 +39,7 @@ namespace idgen {
 
 class EmpIdGen
 {
-	static EmpIdGen *m_thisInstance; ///<Variable to reference to EmpIdGen.
+	static EmpIdGen *m_thisInstance; ///<Variable to reference to EmpIdGen. 
 
  private:
 
@@ -55,7 +52,6 @@ class EmpIdGen
   */
   EmpIdGen();
 
-
   public:
 
  /**@fn getInstance
@@ -64,8 +60,8 @@ class EmpIdGen
   * @return Pointer to EmpIdGen.
   */
   static EmpIdGen* getInstance();
-
-
+ 
+  
  /**@fn getNextId
   * @brief gets the next system-generated id.
   * @param none.
@@ -74,5 +70,5 @@ class EmpIdGen
   std::string getNextId();
 };
 
-}	//namespace idgen
+}	//namespace idgen 
 #endif //EMPIDGEN_H

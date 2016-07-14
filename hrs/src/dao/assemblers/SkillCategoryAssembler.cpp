@@ -6,31 +6,31 @@
 #include<common/SkillCategory.h>
 #include<dbaccess/ODBCResultSet.h>
 
-std::string SkillCategoryAssembler::assemble(SkillCategory& SkillCategorys,std::string query)
-
+std::string SkillCategoryAssembler::assemble(SkillCategory& category, std::string query)
+		
 {
 	char buf[1024];
 
 	sprintf(buf,query.c_str(),
-				    SkillCategorys.getSkillCategoryId().c_str(),
-					  SkillCategorys.getSkillCategoryName().c_str(),
-					  SkillCategorys.getSkillCategoryDescription().c_str(),
-					  SkillCategorys.getStatus().c_str());
+		 category.getCategoryId().c_str(),
+		 category.getCategoryName().c_str(),
+		 category.getCategoryDescription().c_str(),
+		 category.getStatus().c_str());
 
 	return std::string(buf);
 }
 
+SkillCategory SkillCategoryAssembler::disAssemble(dbaccess::ODBCResultSet* rs)
 
-  SkillCategory SkillCategoryAssembler::disAssemble(dbaccess::ODBCResultSet* rs)
-  {
+ {
+		
+	 SkillCategory cat;
 
-	  SkillCategory skillcat;
+	 cat.setCategoryId( rs->getString( rs->getColNum("ID") ));
+	 cat.setCategoryName( rs->getString( rs->getColNum("NAME")) );          
+	 cat.setCategoryDescription(rs->getString( rs->getColNum("DESCRIPTION")) );
+	 cat.setStatus(rs->getString( rs->getColNum("STATUS")) );
 
+	 return cat;
+ }
 
-	   skillcat.setSkillCategoryId( rs->getString( rs->getColNum("ID")) );
-	   skillcat.setSkillCategoryName( rs->getString( rs->getColNum("NAME")) );
-	   skillcat.setSkillCategoryDescription( rs->getString( rs->getColNum("DESCRIPTION")) );
-	   skillcat.setStatus( rs->getString( rs->getColNum("STATUS") ));
-
-	   return skillcat;
-  }

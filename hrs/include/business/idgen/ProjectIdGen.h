@@ -7,23 +7,23 @@
 * @brief Declares the ProjectIdGen
 *
 * <BR>NAME:ProjectIdGen
-*
+* 
 * <BR>BASE CLASSES:None
-*
+* 
 * <BR>PURPOSE:To generate project id.
 *
 * <BR>AUTHOR:Smitha Manjunath
 * <BR>
 * <BR>$Revision: $12/14/2005
-*
+* 
 * <BR>$Log:12/14/2005
-*
+* 
 * <BR>COPYRIGHT NOTICE:
 * <BR>Copyright (c) 2005 C++ Capability team at Accenture. All rights reserved.
 */
 
 namespace idgen {
-
+	
 /**@class ProjectIdGen
 * @brief  Declaration of ProjectIdGen
 * <PRE>This class shall do the following
@@ -35,7 +35,7 @@ namespace idgen {
 
 class ProjectIdGen
 {
-	static ProjectIdGen *m_thisInstance; ///<Variable to reference to CategoryIdGenerator.
+	static ProjectIdGen *m_thisInstance; ///<Variable to reference to CategoryIdGenerator. 
 
  private:
 
@@ -56,8 +56,8 @@ class ProjectIdGen
   * @return Pointer to ProjectIdGen.
   */
   static ProjectIdGen* getInstance();
-
-
+ 
+  
  /**@fn getNextId
   * @brief gets the next system-generated id.
   * @param none.
@@ -66,6 +66,6 @@ class ProjectIdGen
   std::string getNextId();
 };
 
-} //namespace idgen
+} //namespace idgen 
 
 #endif //PROJECTIDGEN

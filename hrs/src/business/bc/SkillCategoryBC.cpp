@@ -1,147 +1,129 @@
 #include<business/SkillCategoryBC.h>
-#include<common/SkillCategoryInfo.h>
+#include<common/SkillCategory.h>
 #include<dao/SkillCategoryDAO.h>
-#include<business/idgen/SkillCategoryIdGen.h>
+#include<business/idgen/CategoryIdGen.h>
 
-/**@file SkillCategoryBC.cpp
-* @brief HRS Application : Defines the SkillCategoryBC Class.
-*
-* <BR>NAME:SkillCategoryBC
-*
-* <BR>BASE CLASSES:None
-*
-* <BR>PURPOSE:To do the effective communication bitween the HRManager class and the SkillCategoryDAO class
-*
-* <BR>AUTHOR:Vinoj.V.S
-* <BR>
-* <BR>$Revision: $6/12/2005
-*
-* <BR>$Log:6/12/2005
-*
-* <BR>COPYRIGHT NOTICE:
-* <BR>Copyright (c) 2005 C++ Capability team at Accenture. All rights reserved.
-*/
+
+/*
+ * Created on Dec 15, 2005
+ * 
+ * C++ Development School
+ * Copyright 2005 Accenture
+ */
+
 #ifdef ALOGGER
 #include<logger/Logger.h>
 #endif
 
-
 namespace bc{
-
- /**@fn SkillCategoryBC
-   * @brief Default Constructor.
-   * This constructor will not take any argument.
-   * It will initialize both the variable to ZERO.
-   * @param none
-   * @return none
+  /**
+   * SkillBC constructor
+   * @author Vinoj.V.S
+   * @author last modified by: $Author: 
+   * @version 1.0
    */
-
   SkillCategoryBC::SkillCategoryBC()
   {
   }
+			      
+
+		
 
 
-
-
- /**@fn createSkillCategory
-   * @brief it creats the SkillCategory
-   * It create the SkillCategory data
+  /**It create the SkillCategory data
    * returns nothing.
-   * @param reference to the objectof SkillCategoryInfo
+   * @param an objectof SkillCategory
    * @return nothing.
    */
-  void SkillCategoryBC::createSkillCategory(SkillCategoryInfo& info)
+  void SkillCategoryBC::createCategory(SkillCategory& info)
   {
+    //#ifdef ALOGGER
+    //	logger::Logger::getLogger().info("SkillCategoryBC::createCategory::About to create a Category");
+    //#endif
+    std::string id;
+    id=(idgen::CategoryIdGen::getInstance())->getNextId();
+    info.setCategoryId(id);//info is an instance of the class SkillCatefory and id is a string
+
+    m_catDAO.create(info); 
 #ifdef ALOGGER
-    logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "About to get unique id");
-#endif
-
-    std::string id=(idgen::SkillCategoryIdGen::getInstance())->getNextId();
-
-#ifdef ALOGGER
-    logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, id.c_str());
-#endif
-
-    info.setSkillCategoryId(id);//proj is an instance of the class SkillCategoryInfo and id is a string
-    m_SkillCategoryDAO.create(info);
-
-#ifdef ALOGGER
+    //logger::Logger::getInstance().info("EmployeeBC::createEmployee::Created an Employee");
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
 #endif
 
-
   }
+	
 
 
-
-  /**@fn searchSkillCategory
-   * @brief it seerchs for a SkillCategory
-   * @param std::string id
-   * @return an object of the class SkillCategoryinfo.
+  /**returns the Information of the SkillCategory
+   * @param std::string
+   * @return an object of the class SkillCategory.
    */
-  SkillCategoryInfo SkillCategoryBC::searchCategory(std::string id)
+  SkillCategory SkillCategoryBC::searchSkillCategory(std::string id)
   {
-    SkillCategoryInfo catInfo;
-    SkillCategoryInfo* catInfoPtr = NULL;
-
-
 #ifdef ALOGGER
-    //logger::Logger::getInstance().info("EmployeeBC::searchEmployee::searching an Employee");
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, id.c_str() );
 #endif
-    catInfoPtr = static_cast<SkillCategoryInfo*>(m_SkillCategoryDAO.findByPK(id));//we may overload == operator in SkillCategoryInfo
-
+    SkillCategory catInfo;
+    SkillCategory* catInfoPtr = NULL;
+		
+    catInfoPtr = static_cast<SkillCategory*>(m_catDAO.findByPK(id));
     catInfo = *catInfoPtr;
     delete catInfoPtr;
 
     return catInfo;
   }
 
- /**@fn searchSkillCategorys
-   * @brief it seerchs for a collection of SkillCategorys
-   * @param an reference to the object of SkillCategoryInfo.
-   * @return a set of objects to the class SkillCategoryinfo.
-   */
-  std::vector<SkillCategoryInfo> SkillCategoryBC::searchCategorys(std::string name)
-  {
 
+  /**returns the collection of skillCategory
+   * @param Skillcategory
+   * @return collection of SkillCategory
+   */
+  std::vector<SkillCategory> SkillCategoryBC::searchSkillCategories(std::string criteria)
+  {
 #ifdef ALOGGER
-    logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, name.c_str() );
+    logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, criteria.c_str() );
 #endif
 
-    std::vector<SkillCategoryInfo> catList;
+    std::vector<SkillCategory> skillList;
+    std::vector<HRSObject*> skillListPtr;
 
-    std::vector<HRSObject*> catListPtr;
-    catListPtr = m_SkillCategoryDAO.find(name);
+    if( criteria.empty() )
+      skillListPtr = m_catDAO.findByAll();
+    else
+      skillListPtr = m_catDAO.find(criteria);
 
-    int size = catListPtr.size();
+#ifdef ALOGGER
+    logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "...After fetching the vector");
+#endif
+
+    int size = skillListPtr.size();
     for(int i = 0; i < size; ++i)
       {
-	catList.push_back( *(static_cast<SkillCategoryInfo*>(catListPtr[i])) );
+	skillList.push_back( *(static_cast<SkillCategory*>(skillListPtr[i])) );
       }
     for(int i = 0; i < size; ++i)
-      delete catListPtr[i];
-    catListPtr.clear();
+      delete skillListPtr[i];
 
-    return catList;
+    skillListPtr.clear();
+
+    return skillList;
+
   }
-
-
-
-  /**@fn updateSkillCategory
-   * @brief it updtes the SkillCategory
-   * This function updates the information of the SkillCategory records in the database.
+   
+  /**This function updates the information of the skillCategory records in the database.
    * Returns nothing
-   * @param an reference to the object of SkillCategoryinfo
+   * @param an object of SkillCategory
    * @return none
    */
-  void SkillCategoryBC::updateCategory(SkillCategoryInfo& info)
+  void SkillCategoryBC::updateCategory(SkillCategory& info)
   {
 #ifdef ALOGGER
     logger::Logger::getInstance().debug(__FILE__, __LINE__, __FUNCTION__, "");
     //logger::Logger::getInstance().info("EmployeeBC::updateEmployee::About to updatet the Employee");
 #endif
-    m_SkillCategoryDAO.update(info);
-  }
+    m_catDAO.update(info);
 
+	
+  }
+  
 }//namespace bc

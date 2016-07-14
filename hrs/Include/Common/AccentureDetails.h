@@ -1,5 +1,5 @@
-#ifndef ACCENTUREDETAIL_H
-#define ACCENTUREDETAIL_H
+#ifndef ACCENTUREDETAILS_H
+#define ACCENTUREDETAILS_H
 /**
 * @file AccentureDetails.h
 * @brief Value Object used to pass information between UI and DB.
@@ -27,7 +27,7 @@
 /**@class AccentureDetails
  * @brief Value Object used to pass information between UI and DB.
  * */
-class AccentureDetail : public HRSObject
+class AccentureDetails : public HRSObject
 {
     std::string m_employeeNo; 
 
@@ -53,9 +53,9 @@ class AccentureDetail : public HRSObject
             
             
 public:
-	AccentureDetail()
+	AccentureDetails()
 	{
-	  m_className = "AccentureDetail";
+	  m_className = "AccentureDetails";
 	}
 
 
@@ -112,4 +112,4 @@ public:
             
 };
 
-#endif //ACCENTUREDETAIL_H
+#endif //ACCENTUREDETAILS_H

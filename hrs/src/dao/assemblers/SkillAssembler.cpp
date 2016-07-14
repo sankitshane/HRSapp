@@ -3,36 +3,34 @@
 #include <string>
 
 #include<dao/assemblers/SkillAssembler.h>
-#include<common/SkillInformation.h>
+#include<common/SkillsInformation.h>
 #include<dbaccess/ODBCResultSet.h>
 
-std::string SkillAssembler::assemble(SkillInformation& Skills,std::string query)
+std::string SkillAssembler::assemble(SkillsInformation& skills,std::string query)
 
 {
 	char buf[1024];
 
-	sprintf(buf,query.c_str(),
-				    Skills.getSkillId().c_str(),
-					  Skills.getSkillCatId().c_str(),
-					  Skills.getSkillName().c_str(),
-					  Skills.getSkillDescription().c_str(),
-					  Skills.getStatus().c_str());
+	sprintf(buf,query.c_str(),	 skills.getSkillId().c_str(),
+					 skills.getCategoryId().c_str(),
+					 skills.getSkillName().c_str(),
+					 skills.getSkillDescription().c_str(),
+					 skills.getStatus().c_str());
 
 	return std::string(buf);
 }
 
+SkillsInformation SkillAssembler::disAssemble(dbaccess::ODBCResultSet* rs)
 
-  SkillInfo SkillAssembler::disAssemble(dbaccess::ODBCResultSet* rs)
-  {
+ {
+	
+	 SkillsInformation skill;
 
-	  SkillInformation skill;
-
-
-	   skill.setSkillId( rs->getString( rs->getColNum("ID")) );
-	   skill.setSkillId( rs->getString( rs->getColNum("CATID")));
-	   skill.setSkillName( rs->getString( rs->getColNum("NAME")) );
-	   skill.setSkillDescription( rs->getString( rs->getColNum("DESCRIPTION")) );
-	   skill.setStatus( rs->getString( rs->getColNum("STATUS") ));
-
-	   return skill;
-  }
+	 skill.setSkillId( rs->getString( rs->getColNum("ID")) );             
+     skill.setCategoryId( rs->getString( rs->getColNum("CATID")) );         
+	 skill.setSkillName( rs->getString( rs->getColNum("NAME")) );           
+	 skill.setSkillDescription( rs->getString( rs->getColNum("DESCRIPTION") ));
+	 skill.setStatus( rs->getString( rs->getColNum("STATUS") ));    
+     
+	 return skill;
+ }

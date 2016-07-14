@@ -1,31 +1,32 @@
-#ifndef CategoryIDGEN_H
-#define CategoryIDGEN_H
+#ifndef CATEGORYIDGEN
+#define CATEGORYIDGEN
 
-#include<string>
 
-/**@file SkillCategoryIdGen.h
-* @brief Declares the SkillCategoryIdGen
+/**@file CategoryIdGen.h
+* @brief Declares the CategoryIdGen
 *
-* <BR>NAME:SkillCategoryIdGen
-*
+* <BR>NAME:CategoryIdGen
+* 
 * <BR>BASE CLASSES:None
-*
-* <BR>PURPOSE:To generate SkillCategory id.
+* 
+* <BR>PURPOSE:To generate category id.
 *
 * <BR>AUTHOR:Smitha Manjunath
 * <BR>
 * <BR>$Revision: $12/14/2005
-*
+* 
 * <BR>$Log:12/14/2005
-*
+* 
 * <BR>COPYRIGHT NOTICE:
 * <BR>Copyright (c) 2005 C++ Capability team at Accenture. All rights reserved.
 */
+#include <string>
 
 namespace idgen {
 
-/**@class SkillCategoryIdGen
-* @brief  Declaration of SkillCategoryIdGen
+/**@class CategoryIdGen
+* @brief  Declaration of CategoryIdGen.
+* <PRE>The participants will be give following Activity.
 * <PRE>This class shall do the following
 * This class is the singleton.
 * It will provide a method to get an instance of it.
@@ -35,11 +36,12 @@ namespace idgen {
 
 class CategoryIdGen
 {
-	static CategoryIdGen *m_thisInstance; ///<Variable to reference to CategoryIdGenerator.
+	
+	static CategoryIdGen* m_thisInstance; ///<Variable to reference to CategoryIdGenerator. 
 
  private:
 
- /**@fn SkillCategoryIdGen.
+ /**@fn CategoryIdGen.
   * @brief empty private Constructor.
   * This constructor will not take any argument.
   * Instance can be obtained through getInstance()
@@ -51,13 +53,13 @@ class CategoryIdGen
   public:
 
  /**@fn getInstance
-  * @brief implements singleton SkillCategoryIdGen class.
+  * @brief implements singleton CategoryIdGen class.
   * @param none
-  * @return Pointer to SkillCategoryIdGen.
+  * @return Pointer to CategoryIdGen.
   */
   static CategoryIdGen* getInstance();
-
-
+ 
+  
  /**@fn getNextId
   * @brief gets the next system-generated id.
   * @param none.
@@ -67,5 +69,4 @@ class CategoryIdGen
 };
 
 } //namespace idgen
-
-#endif //SkillCategoryIDGEN
+#endif //CATEGORYIDGEN

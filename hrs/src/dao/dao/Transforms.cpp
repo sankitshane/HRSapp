@@ -24,10 +24,7 @@ std::string Transform::transform(AccentureDetails& info)
 		sql = sql + "EnterpriseId='" + info.getEnterpriseId () + "'";
 		CommaNeeded=true;
 
-		sql += ( CommaNeeded == true ? ",\n" : " " );
-		sql = sql + "EmpLevel='" + info.getLevel() + "'";
-		CommaNeeded = true;
- 
+
 		sql+=(CommaNeeded==true?",\n":" ");
 		sql = sql + "GMU='" + info.getGMU () + "'";
 		CommaNeeded=true;
