@@ -1,9 +1,5 @@
-#ifndef HRMANAGERBC_H
-#define HRMANAGERBC_H
-
-#ifndef Null
-#define Null 0
-
+#ifndef HRMANAGER_H
+#define HRMANAGER_H
 
 #include<string>
 #include<vector>
@@ -23,17 +19,17 @@
 /**@file HRManagerBC_h
 * @brief HRS Application : Declares the HRManager class.
 * <BR>NAME:HRManager
-*
+* 
 * <BR>BASE CLASSES:None
-*
+* 
 * <BR>PURPOSE:To do effective communication bitween the Business Component and the User Interface
 *
 * <BR>AUTHOR:Vinoj.V.S
 * <BR>
 * <BR>$Revision: $09/12/2005
-*
+* 
 * <BR>$Log:09/12/2005
-*
+* 
 * <BR>COPYRIGHT NOTICE:
 * <BR>Copyright (c) 2005 C++ Capability team at Accenture. All rights reserved.
 */
@@ -47,16 +43,16 @@ namespace bc {
 ** @brief HRS Application  Declaration of HRManager class.
 * <PRE>The participants will be give folowing Activity.
 * 1. Write a class HRManager , which will enforce encapsulation.
-* 2. class HRManager should have five private member variable.
+* 2. class HRManager should have five private member variable. 
 * 3. Declare one constructors.
 * 4. Declare Destructor.
 */
 
 class HRManager
 {
- private:
+ private: 
 	 static HRManager* m_instance; ///<Reference to the HRManager class
-   EmployeeBC m_empBC; ///<Object of the EmployeeBC Class.
+     EmployeeBC m_empBC; ///<Object of the EmployeeBC Class.
 	 SkillCategoryBC m_skillCatBC; ///<Object of the skill categoryBC class
 	 SkillBC m_skillBC; ///<Object of  the skillBC class
 	 ProjectBC m_projectBC; ///<Object of the projectBC class
@@ -64,7 +60,7 @@ class HRManager
    /**@fn HRManager
    * @brief Default Constructor.
    * This constructor will not take any argument.
-   * It will initialize all the variable to ZERO.
+   * It will initialize both the variable to ZERO.
    * @param none
    * @return none
    */
@@ -74,7 +70,7 @@ class HRManager
    * @brief Destructor.
    * @param none
    * @return not applicable
-   */
+   */ 
   ~HRManager();
 
 
@@ -83,37 +79,32 @@ class HRManager
     * @param none
     * @return an object to HRManager.
     */
-
   static HRManager* getInstance(void);
 
-
-
-
+  
    /**@fn createEmployee
     *@brief  This method uses createEmployee method of EmployeeBC.
    * @param Object of the class EmployeeInfo
    * @return nothing.
    */
   void createEmployee(EmployeeInfo& info);
+ 
 
-
-
+   
   /**@fn searchEmployee
    *@brief This method uses searchEmployee method of EmployeeBC.
    * @param std::string
    * @return an object of the class employeeInfo.
    */
-
    EmployeeInfo searchEmployee(std::string empno);
 
 
-
+     
   /**@fn searchEmployees
    * @brief This method uses searchEmployees method of EmployeeBC
    * @param Object of the class EmployeeInfo
    * @return the collection of employeeInfo .
    */
-
     std::vector<EmployeeInfo> searchEmployees(std::string info);
 
 
@@ -123,9 +114,7 @@ class HRManager
    * @param Object of the class EmployeeInfo
    * @return none
    */
-
   void updateEmployee(EmployeeInfo& info);
-
 
 
   /**@fn createCategory
@@ -141,9 +130,7 @@ class HRManager
    * @param std::string
    * @return an object of the class SkillCategory.
    */
-
    SkillCategory searchCategory(std::string id);
-
 
 
    /**@fn searchCategories
@@ -151,9 +138,7 @@ class HRManager
    * @param Object of the class SkillCategory
    * @return an collection of SkillCategory.
    */
-
    std::vector<SkillCategory>  searchCategories(std::string dataFind);
-
 
 
    /**@fn updateCategory
@@ -176,19 +161,15 @@ class HRManager
    * @param std::string
    * @return an object of the class SkillInformation.
    */
-
    SkillsInformation searchSkill(std::string id);
-
 
 
  /**This method uses searchSkills method of SkillCategoryBC.
    * @param Object of the class SkillInformation
    * @return an object of SkillInformation.
    */
-
    std::vector<SkillsInformation>  searchSkills(std::string name);
-
-
+ 
 
    /**this function uses the updateSkill method of SkillBC.
    * Returns nothing
@@ -209,21 +190,17 @@ class HRManager
    * @param std::string
    * @return an object of the class ProjectInfo.
    */
-
    ProjectInfo searchProject(std::string id);
-
 
 
    /**This method uses searchApprovedPoject method of ProjectBC.
    * @param Object of the class Project Info
    * @return a collection of ProjectInformation.
    */
-
    std::vector<ProjectInfo>  searchProjects(std::string dataFind);
 
 
-
-
+   
   /**this function updateProject method of ProjectBC.
    * Returns nothing
    * @param Object of the class ProjectInfo
@@ -235,3 +212,6 @@ class HRManager
 } //namespace bc
 
 #endif //EmployeeBC.h
+
+
+
