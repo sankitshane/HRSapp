@@ -136,7 +136,7 @@ namespace bc {
         eInfo = *(static_cast<EmployeeInfo*>(empListPtr[i]));
         accInfoPtr = static_cast<AccentureDetails*>(m_empAccDao.findByPK( eInfo.getEmpNo() ));
         eInfo.setAccentureDetails( *accInfoPtr);
-        delete adInfoPtr;
+        delete accInfoPtr;
     	empList.push_back( eInfo );
     }
       
